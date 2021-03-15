@@ -9,10 +9,7 @@ assignees: ''
 
 ## Assigness:
 
-## ISSUE
-* Group:
-* Type:
-* Detail:
+## Description
 
 ## TODO
 - [ ] 1.
