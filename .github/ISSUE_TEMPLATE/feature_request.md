@@ -7,14 +7,14 @@ assignees: ''
 
 ---
 
-##ISSUE
-*Group:
-*Type:
-*Detail:
+## ISSUE
+* Group:
+* Type:
+* Detail:
 
-##TODO
--[ ]
--[ ]
--[ ]
+## TODO
+- [ ] 1.
+- [ ] 2.
+- [ ] 3.
 
-##Estimated time
+## Estimated time
