@@ -1,5 +1,5 @@
 import React from 'react';
-import { } from 'react-redux';
+// import { } from 'react-redux';
 import googleImg from '../img/Google_icon.png';
 import githubImg from '../img/github.png';
 import '../Login.css'
