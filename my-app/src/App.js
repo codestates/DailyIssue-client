@@ -1,25 +1,32 @@
-import logo from './logo.svg';
+import React from "react";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
+import Login from "./pages/Login";
+import Main from "./pages/Main";
+import Mypage from "./pages/Mypage";
+import Ssissue from "./pages/Ssissue";
+import axios from "axios";
+import Nav from "./components/Nav"
 import './App.css';
+import SideNav from './components/SideNav';
+import Contents from './components/Contents';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  render(){
+    return (
+      <div>
+      <Switch>
+      <Route>
+        <Nav />
+        <div className="Components">
+        <SideNav />
+        <Contents />
+        </div>
+      </Route>
+      </Switch>
+      </div>
+    );
+  }
 }
 
-export default App;
+
+export default withRouter(App);

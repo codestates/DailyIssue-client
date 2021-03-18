@@ -1,0 +1,13 @@
+.Side_nav {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	justify-content: center;
+	width: auto;
+	height: 645px;
+	background-color: blue;
+}
+.opinion {
+	padding: 10px;
+	font-size: 40px;
+}
