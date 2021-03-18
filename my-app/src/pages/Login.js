@@ -5,6 +5,7 @@ import githubImg from '../img/github.png';
 import '../Login.css'
 
 function LoginPage() {
+
     return (
         <div id="login-wrap">
             <div id="right-side">
