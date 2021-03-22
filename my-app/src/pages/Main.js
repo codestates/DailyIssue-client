@@ -29,11 +29,11 @@ class Main extends React.Component {
         <div className="icon">
         {!this.props.voted
         ?(<>
-          <div className="yes" onClick={this.vote(1)}>
+          <div className="yes" onClick={()=>this.vote(1)}>
             <img src="../check-mark.png"width="200px" height="200px"/>
           </div>
           <div className="empty"></div>
-          <div className="no" onClick={this.vote(0)}>
+          <div className="no" onClick={()=>this.vote(0)}>
             <img src="../negative.png"width="200px" height="200px"/>
           </div>          
         </>)
