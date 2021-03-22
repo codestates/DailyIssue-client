@@ -10,18 +10,43 @@ import './App.css';
 import SideNav from './components/SideNav';
 import Contents from './components/Contents';
 
+
 class App extends React.Component {
+  state = {
+    isLogin: false,
+    userinfo: null,
+  }
+  handleResponseSuccess(){
+    axios
+      .get("http://localhost:4000/")
+    this.setState({ isLogin: true})
+    this.props.history.push("/")
+  }
   render(){
+    const { isLogin, userinfo } = this.state;
+
     return (
       <div>
       <Switch>
-      <Route>
-        <Nav />
-        <div className="Components">
-        <SideNav />
-        <Contents />
-        </div>
-      </Route>
+      <Route render={()=> {
+        if(!isLogin){
+          return (
+          <div>
+            <Nav />
+              <div className="Components">
+               <SideNav />
+               <Contents />
+              </div>
+          </div>) 
+        }
+        else {
+          return (
+            <Login />
+          )
+        }
+      }
+      }
+      />
       </Switch>
       </div>
     );

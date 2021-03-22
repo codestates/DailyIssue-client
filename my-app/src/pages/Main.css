@@ -1,5 +1,4 @@
 .Today_Issue {
-	background-color: white;
 	display: flex;
 	flex-direction: row;
 	font-size: 50px;
@@ -15,24 +14,27 @@
 	padding: 40px;
 	margin: 10px;
 	flex-direction: row;
-	align-items: center;
+	justify-content: space-evenly;
+}
+.empty {
+	width: 200px;
 }
 
 .yes {
-	background-color: red;
 	margin: 10px;
 }
 .yes:hover {
 	cursor: pointer;
 }
 .no {
-	background-color: black;
 	margin: 10px;
 }
 .no:hover {
 	cursor: pointer;
 }
 .What_is_your_Choice {
-	background-color: red;
 	font-size: 40px;
+}
+.li {
+	text-align: left;
 }
