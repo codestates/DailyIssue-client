@@ -12,57 +12,42 @@ import Contents from './components/Contents';
 
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isLogin: false,
-      userinfo: null,
-      title: null,
-      hotissue: [],
-    }
-
-    this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
+  state = {
+    isLogin: true,
+    userinfo: null,
   }
-
-  // 로그인이 성공될 때
-  async handleResponseSuccess(token) {
+  handleResponseSuccess(token) {
+    this.setState({ isLogin: false, userinfo:token })
+    this.props.history.push("/")
+    console.log("asdf");
   }
-
-  render(){
+  render() {
     const { isLogin, userinfo } = this.state;
 
     return (
-      <>
-        <div id="test">
+      <div>
         <Switch>
-
-        <Route path="/main" render={() => {            
-            return (
-              <div>
-                <Nav />
-                  <div className="Components">
-                  <SideNav hotissue={this.state.hotissue}/>
-                  <Contents title={this.state.title}/>
-                  </div>
-              </div>
-            ) 
-          }
-        }
-        />
-          <Route path="/login" render={() => {
+          <Route render={() => {
             if (!isLogin) {
-              return <Login handleResponseSuccess={this.handleResponseSuccess}/>
+              return (
+                <div>
+                  <Nav userinfo={this.state.userinfo}/>
+                  <div className="Components">
+                    <SideNav userinfo={this.state.userinfo}/>
+                    <Contents userinfo={this.state.userinfo}/>
+                  </div>
+                </div>)
             }
             else {
-              // 잘못된 요청이라는 것을 알려줘야 함...
+              return (
+                <Login handleResponseSuccess={this.handleResponseSuccess.bind(this)}/>
+              )
             }
-          }}/>
-        
-
+          }
+          }
+          />
         </Switch>
-        </div>
-      </>
+      </div>
     );
   }
 }
