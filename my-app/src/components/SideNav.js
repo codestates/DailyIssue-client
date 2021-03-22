@@ -3,7 +3,7 @@ import "./SideNav.css"
 import {useState} from 'react';
 import moment from 'moment';
 
-function SideNav() {
+function SideNav({ hotissue }) {
   const [getMoment, setMoment]=useState(moment());
   const today = getMoment;
   const firstWeek = today.clone().startOf('month').week();
@@ -62,9 +62,9 @@ return (
   </div>
   <div className="Hot_Issue">
     Hot Issue
-      <ul></ul>
+      <ul>
       <li className="li">first</li>
-      <li className="li">second</li>
+      </ul>
   </div>
   <br></br>
   </div>

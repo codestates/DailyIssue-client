@@ -13,41 +13,40 @@ import Contents from './components/Contents';
 
 class App extends React.Component {
   state = {
-    isLogin: false,
+    isLogin: true,
     userinfo: null,
   }
-  handleResponseSuccess(){
-    axios
-      .get("http://localhost:4000/")
-    this.setState({ isLogin: true})
+  handleResponseSuccess(token) {
+    this.setState({ isLogin: false, userinfo:token })
     this.props.history.push("/")
+    console.log("asdf");
   }
-  render(){
+  render() {
     const { isLogin, userinfo } = this.state;
 
     return (
       <div>
-      <Switch>
-      <Route render={()=> {
-        if(!isLogin){
-          return (
-          <div>
-            <Nav />
-              <div className="Components">
-               <SideNav />
-               <Contents />
-              </div>
-          </div>) 
-        }
-        else {
-          return (
-            <Login />
-          )
-        }
-      }
-      }
-      />
-      </Switch>
+        <Switch>
+          <Route render={() => {
+            if (!isLogin) {
+              return (
+                <div>
+                  <Nav userinfo={this.state.userinfo}/>
+                  <div className="Components">
+                    <SideNav userinfo={this.state.userinfo}/>
+                    <Contents userinfo={this.state.userinfo}/>
+                  </div>
+                </div>)
+            }
+            else {
+              return (
+                <Login handleResponseSuccess={this.handleResponseSuccess.bind(this)}/>
+              )
+            }
+          }
+          }
+          />
+        </Switch>
       </div>
     );
   }

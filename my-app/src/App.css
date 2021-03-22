@@ -1,11 +1,7 @@
 .App {
 	text-align: center;
 }
-.nav-var {
-	background-color: blue;
-	display: flex;
-	height: 40px;
-}
+
 .App-logo {
 	height: 40vmin;
 	pointer-events: none;
