@@ -45,3 +45,7 @@
 .MyModal #signupBtn{
     margin-top: 10px;
 }
+
+.MyModal #complete{
+    color: white;
+}
