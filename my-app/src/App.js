@@ -12,43 +12,57 @@ import Contents from './components/Contents';
 
 
 class App extends React.Component {
-  state = {
-    isLogin: false,
-    userinfo: null,
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLogin: false,
+      userinfo: null,
+      title: null,
+      hotissue: [],
+    }
+
+    this.handleResponseSuccess = this.handleResponseSuccess.bind(this);
   }
-  handleResponseSuccess(){
-    axios
-      .get("http://localhost:4000/")
-    this.setState({ isLogin: true})
-    this.props.history.push("/")
+
+  // 로그인이 성공될 때
+  async handleResponseSuccess(token) {
   }
+
   render(){
     const { isLogin, userinfo } = this.state;
 
     return (
-      <div>
-      <Switch>
-      <Route render={()=> {
-        if(!isLogin){
-          return (
-          <div>
-            <Nav />
-              <div className="Components">
-               <SideNav />
-               <Contents />
+      <>
+        <div id="test">
+        <Switch>
+
+        <Route path="/main" render={() => {            
+            return (
+              <div>
+                <Nav />
+                  <div className="Components">
+                  <SideNav hotissue={this.state.hotissue}/>
+                  <Contents title={this.state.title}/>
+                  </div>
               </div>
-          </div>) 
+            ) 
+          }
         }
-        else {
-          return (
-            <Login />
-          )
-        }
-      }
-      }
-      />
-      </Switch>
-      </div>
+        />
+          <Route path="/login" render={() => {
+            if (!isLogin) {
+              return <Login handleResponseSuccess={this.handleResponseSuccess}/>
+            }
+            else {
+              // 잘못된 요청이라는 것을 알려줘야 함...
+            }
+          }}/>
+        
+
+        </Switch>
+        </div>
+      </>
     );
   }
 }

@@ -5,7 +5,7 @@ import SignUp from './SignUp';
 import googleImg from '../img/Google_icon.png';
 import githubImg from '../img/github.png';
 // import './Modal.css';
-import '../Login.css';
+import './Login.css';
 
 axios.defaults.withCredentials = true;
 
@@ -58,10 +58,8 @@ class LoginPage extends React.Component {
                 credentials: 'include',
             })
             .then(data => {
-                console.log(data);
-
-
-
+                console.log(data.data.accToken);
+                // this.props.handleResponseSuccess(data.data.accToken);
             })
             .catch((err) => {
                 //modal로 구현(alert 사용x)
