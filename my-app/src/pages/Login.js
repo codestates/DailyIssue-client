@@ -79,6 +79,8 @@ class LoginPage extends React.Component {
 
     render() {
         return (
+            <div>
+                <br></br>
             <div id="login-wrap">
                 <div id="right-side">
                     <div id="login-form">
@@ -107,7 +109,7 @@ class LoginPage extends React.Component {
                 {/* <SingUp isOpen={this.state.signUpModalOn} /> */}
                 <SignUp isOpen={this.state.signUpModalOn} handleSignUpModalOn={this.handleSignUpModalOn} />
             </div >
-
+            </div>
         )
 
     }
