@@ -5,7 +5,7 @@ import SignUp from './SignUp';
 import googleImg from '../img/Google_icon.png';
 import githubImg from '../img/github.png';
 // import './Modal.css';
-import '../Login.css';
+import './Login.css';
 
 axios.defaults.withCredentials = true;
 
