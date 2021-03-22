@@ -1,0 +1,49 @@
+.nav_var {
+	background: rgb(74, 72, 72);
+	height: 60px;
+	display: flex;
+}
+.img {
+	display: flex;
+	padding: 5px;
+}
+.Daily_Issue {
+	display: flex;
+	flex: auto;
+	padding: 10px;
+	margin: 5px;
+	font-size: 25px;
+	font-weight: bolder;
+	color: white;
+}
+.Daily_Issue:hover {
+	cursor: pointer;
+}
+.profile {
+	display: flex;
+	width: 10px;
+	height: 10px;
+	background-color: white;
+	border-radius: 50%;
+	padding: 20px;
+	margin: 5px;
+}
+.profile:hover {
+	cursor: pointer;
+}
+.like {
+	display: flex;
+	justify-content: center;
+	padding-top: 15px;
+	color: white;
+}
+.Sign_Out {
+	display: flex;
+	padding: 20px;
+	color: white;
+	font-weight: bold;
+}
+
+.Sign_Out:hover {
+	cursor: pointer;
+}

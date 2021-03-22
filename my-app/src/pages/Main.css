@@ -1,0 +1,40 @@
+.Today_Issue {
+	display: flex;
+	flex-direction: row;
+	font-size: 50px;
+	justify-content: center;
+}
+.title {
+	display: flex;
+	justify-content: center;
+}
+.icon {
+	display: flex;
+	flex-wrap: nowrap;
+	padding: 40px;
+	margin: 10px;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+.empty {
+	width: 200px;
+}
+
+.yes {
+	margin: 10px;
+}
+.yes:hover {
+	cursor: pointer;
+}
+.no {
+	margin: 10px;
+}
+.no:hover {
+	cursor: pointer;
+}
+.What_is_your_Choice {
+	font-size: 40px;
+}
+.li {
+	text-align: left;
+}
