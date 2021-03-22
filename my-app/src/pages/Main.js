@@ -52,9 +52,6 @@ class Main extends React.Component {
       })
     })
   }
-  noClick(){
-    console.log('2')
-  }
   render(){
     return this.state.isLoaded?
     (
