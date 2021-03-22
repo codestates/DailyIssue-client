@@ -8,7 +8,17 @@ function contents(props){
 
   return (
     <div className="Contents">
-        <Main userinfo={props.userinfo}/>
+        <Main 
+          postId={props.postId}
+          title={props.title}
+          voted={props.voted}
+          agree={props.agree}
+          disagree={props.disagree}
+          comments={props.comments}
+          hotIssues={props.hotIssues}
+          userinfo={props.userinfo}
+          handleIssue={props.handleIssue} 
+          userinfo={props.userinfo}/>
     </div>
   )
 }

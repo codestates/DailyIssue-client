@@ -9,17 +9,71 @@ import Nav from "./components/Nav"
 import './App.css';
 import SideNav from './components/SideNav';
 import Contents from './components/Contents';
-
-
+const today=function(){
+  let tmp=new Date(), day=tmp.getDate().toString(), month=(tmp.getMonth()+1).toString();
+  if(day.length===1) day=`0${day}`;
+  if(month.length===1) month=`0${month}`;
+  return `${tmp.getFullYear()}-${month}-${day}`;
+}
 class App extends React.Component {
-  state = {
-    isLogin: true,
-    userinfo: null,
+  constructor(props){
+    super(props);
+    this.state = {
+      isLogin: true,
+      userinfo: null,
+      date:today(),
+      postId:0,
+      title:null,
+      voted:false,
+      agree:0,
+      disagree:0,
+      comments:[],
+      hotIssues:[],
+    }
+    this.handleIssue=this.handleIssue.bind(this);
+    this.handleHotIssue=this.handleHotIssue.bind(this);
+    this.handleDate=this.handleDate.bind(this);
+    this.handleResponseSuccess=this.handleResponseSuccess.bind(this);
   }
+
+  handleDate(date){
+    this.setState({date});
+  }
+  
+  handleIssue(data){
+    console.log(data);
+    const newState={
+      voted:data.voted,
+      agree:(data.voted)?data.agree:0,
+      disagree:(data.voted)?data.disagree:0,
+      comments:(data.voted)?data.comments:[]
+    };
+    if(data.postId){
+      newState.postId=data.postId;
+      newState.title=data.title;
+    }
+    this.setState(newState);
+  }
+
+  handleHotIssue(hotIssues){
+    this.setState({
+      hotIssues
+    })
+  }
+
   handleResponseSuccess(token) {
-    this.setState({ isLogin: false, userinfo:token })
-    this.props.history.push("/")
-    console.log("asdf");
+    this.setState({ isLogin: false, userinfo:token });
+    axios.get("http://15.165.161.223:4000/main",{      
+      headers:{
+        Authorization:`bear ${this.state.userinfo}`,
+        credentials:'include'
+      }
+    })
+    .then(data=>{
+      this.handleIssue(data.data);
+      this.props.history.push("/")
+    })
+    .catch(e=>console.log(e));
   }
   render() {
     const { isLogin, userinfo } = this.state;
@@ -33,14 +87,27 @@ class App extends React.Component {
                 <div>
                   <Nav userinfo={this.state.userinfo}/>
                   <div className="Components">
-                    <SideNav userinfo={this.state.userinfo}/>
-                    <Contents userinfo={this.state.userinfo}/>
+                    <SideNav hotIssues={this.state.hotIssues} 
+                      date={this.state.date}
+                      handleDate={this.handleDate}
+                      handleHotIssue={this.handleHotIssue} 
+                      handleIssue={this.handleIssue} 
+                      userinfo={this.state.userinfo}/>
+                    <Contents handleIssue={this.handleIssue} 
+                      postId={this.state.postId}
+                      title={this.state.title}
+                      voted={this.state.voted}
+                      agree={this.state.agree}
+                      disagree={this.state.disagree}
+                      comments={this.state.comments}
+                      hotIssues={this.state.hotIssues}
+                      userinfo={this.state.userinfo}/>
                   </div>
                 </div>)
             }
             else {
               return (
-                <Login handleResponseSuccess={this.handleResponseSuccess.bind(this)}/>
+                <Login handleResponseSuccess={this.handleResponseSuccess}/>
               )
             }
           }

@@ -8,7 +8,7 @@ import githubImg from '../img/github.png';
 import './Login.css';
 
 axios.defaults.withCredentials = true;
-
+const gooleUrl = "https://accounts.google.com/o/oauth2/auth?client_id=745811647110-ma8nt8d0dqpuib8sraari6tmo9o9a7aq.apps.googleusercontent.com&redirect_uri=http%3A%2F%2F15.165.161.223%3A4000%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email";
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
@@ -21,6 +21,7 @@ class LoginPage extends React.Component {
         // const [showModal, setShowModal] = useState(false);
         this.handleInputValue = this.handleInputValue.bind(this);
         this.handleSignUpModalOn = this.handleSignUpModalOn.bind(this);
+        // this.handleGuestLogin = this.handleGuestLogin.bind(this);
     }
 
     handleInputValue = (key) => (e) => {
@@ -68,6 +69,14 @@ class LoginPage extends React.Component {
     };
 
 
+
+    // handleResponseSuccess(token) {
+    //     this.setState({ isLogin: false, userinfo: token })
+    //     this.props.history.push("/main")
+    //     console.log("asdf");
+    // }
+
+
     render() {
         return (
             <div>
@@ -89,11 +98,11 @@ class LoginPage extends React.Component {
                                 {this.state.errorMessage}
                             </div> : ''}
                         {/* <div id="invalid-ment">Invalid ID</div> */}
-                        <button id="guest-btn">Start as a Guest<br />(view only)</button>
+                        <button id="guest-btn" onClick={this.props.handleGuestLogin}>Start as a Guest<br />(view only)</button>
                         <button id="signup-btn" onClick={this.handleSignUpModalOn}>SignUp</button>
                         <div id="login-with">
                             <button id="github-login"><img src={githubImg} alt="github-login-icon" id="github-login-icon" /></button>
-                            <button id="google-login"><img src={googleImg} alt="google-login-icon" id="google-login-icon" /></button>
+                            <a href={gooleUrl}><button id="google-login"><img src={googleImg} alt="google-login-icon" id="google-login-icon" /></button></a>
                         </div>
                     </div>
                 </div>
