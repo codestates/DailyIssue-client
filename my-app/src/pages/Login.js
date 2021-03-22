@@ -59,8 +59,7 @@ class LoginPage extends React.Component {
             })
             .then(data => {
                 console.log(data);
-
-
+                handleResponseSuccess(data.data.accToken);
 
             })
             .catch((err) => {
