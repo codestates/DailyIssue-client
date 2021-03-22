@@ -17,7 +17,7 @@ class Main extends React.Component {
         <div className="icon">
         <div className="yes" onClick={this.yesClick}>
           <img src="../check-mark.png"width="200px" height="200px"/>
-          </div>
+        </div>
           <div className="empty"></div>
         <div className="no" onClick={this.noClick}>
           <img src="../negative.png"width="200px" height="200px"/>
