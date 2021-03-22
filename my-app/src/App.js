@@ -13,41 +13,41 @@ import Contents from './components/Contents';
 
 class App extends React.Component {
   state = {
-    isLogin: false,
+    isLogin: true,
     userinfo: null,
   }
-  handleResponseSuccess(){
+  handleResponseSuccess() {
     axios
       .get("http://localhost:4000/")
-    this.setState({ isLogin: true})
+    this.setState({ isLogin: true })
     this.props.history.push("/")
   }
-  render(){
+  render() {
     const { isLogin, userinfo } = this.state;
 
     return (
       <div>
-      <Switch>
-      <Route render={()=> {
-        if(!isLogin){
-          return (
-          <div>
-            <Nav />
-              <div className="Components">
-               <SideNav />
-               <Contents />
-              </div>
-          </div>) 
-        }
-        else {
-          return (
-            <Login />
-          )
-        }
-      }
-      }
-      />
-      </Switch>
+        <Switch>
+          <Route render={() => {
+            if (!isLogin) {
+              return (
+                <div>
+                  <Nav />
+                  <div className="Components">
+                    <SideNav />
+                    <Contents />
+                  </div>
+                </div>)
+            }
+            else {
+              return (
+                <Login />
+              )
+            }
+          }
+          }
+          />
+        </Switch>
       </div>
     );
   }
