@@ -2,12 +2,12 @@ import React from "react"
 import "./Contents.css"
 import Main from "../pages/Main"
 
-function contents(){
+function contents(props){
 
 
   return (
     <div className="Contents">
-        <Main />
+        <Main userinfo={props.userinfo}/>
     </div>
   )
 }

@@ -16,11 +16,10 @@ class App extends React.Component {
     isLogin: true,
     userinfo: null,
   }
-  handleResponseSuccess() {
-    axios
-      .get("http://localhost:4000/")
-    this.setState({ isLogin: true })
+  handleResponseSuccess(token) {
+    this.setState({ isLogin: false, userinfo:token })
     this.props.history.push("/")
+    console.log("asdf");
   }
   render() {
     const { isLogin, userinfo } = this.state;
@@ -32,16 +31,16 @@ class App extends React.Component {
             if (!isLogin) {
               return (
                 <div>
-                  <Nav />
+                  <Nav userinfo={this.state.userinfo}/>
                   <div className="Components">
-                    <SideNav />
-                    <Contents />
+                    <SideNav userinfo={this.state.userinfo}/>
+                    <Contents userinfo={this.state.userinfo}/>
                   </div>
                 </div>)
             }
             else {
               return (
-                <Login />
+                <Login handleResponseSuccess={this.handleResponseSuccess.bind(this)}/>
               )
             }
           }

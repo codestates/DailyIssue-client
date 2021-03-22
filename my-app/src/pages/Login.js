@@ -58,10 +58,7 @@ class LoginPage extends React.Component {
                 credentials: 'include',
             })
             .then(data => {
-                console.log(data);
-
-
-
+                handleResponseSuccess(data.data.accToken);
             })
             .catch((err) => {
                 //modal로 구현(alert 사용x)
