@@ -41,6 +41,7 @@ class App extends React.Component {
   }
   
   handleIssue(data){
+    console.log(data);
     const newState={
       voted:data.voted,
       agree:(data.voted)?data.agree:0,
@@ -61,8 +62,13 @@ class App extends React.Component {
   }
 
   handleResponseSuccess(token) {
-    this.setState({ isLogin: false, userinfo:token })
-    axios.get("http://15.165.161.223:4000/main")
+    this.setState({ isLogin: false, userinfo:token });
+    axios.get("http://15.165.161.223:4000/main",{      
+      headers:{
+        Authorization:`bear ${this.state.userinfo}`,
+        credentials:'include'
+      }
+    })
     .then(data=>{
       this.handleIssue(data.data);
       this.props.history.push("/")

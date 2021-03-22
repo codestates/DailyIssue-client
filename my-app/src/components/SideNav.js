@@ -11,7 +11,11 @@ function SideNav(props) {
   const lastWeek = today.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week();
   const handleCalenderClick=function(date){
     props.handleDate(date);
-    axios.get(`http://15.165.161.223:4000/main/${date}`)
+    axios.get(`http://15.165.161.223:4000/main/${date}`,{      
+      headers:{
+        authorization:`bear ${props.userinfo}`
+      }
+    })
     .then(data=>{
       console.log("???");
       props.handleIssue(data.data);
@@ -25,7 +29,6 @@ function SideNav(props) {
   }
 
   const calendarArr=()=>{
-
     let result = [];
     let week = firstWeek;
     for ( week; week <= lastWeek; week++) {
