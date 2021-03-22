@@ -1,8 +1,18 @@
-import React from "react"
-import "./Main.css"
+import React from "react";
+import "./Main.css";
+import axios from "axios";
 let Issue = '게임 중독은 질병이다.';
 
 class Main extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={
+      isLoaded:false
+    };
+  }
+  componentDidMount(){
+  }
+
   yesClick(){
     console.log('1')
   }
@@ -10,7 +20,8 @@ class Main extends React.Component {
     console.log('2')
   }
   render(){
-    return (
+    return this.state.isLoaded?
+    (
       <div>
         <h1 className="Today_Issue">Today Issue</h1>
         <h3 className="title">{Issue}</h3>
@@ -25,6 +36,7 @@ class Main extends React.Component {
         </div>
       </div>
     )
+    :<div>Loading</div>
   }
 }
 
