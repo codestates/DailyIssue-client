@@ -1,5 +1,6 @@
 import './AddComment.css'
 import React from "react"
+import axios from 'axios'
 
 class AddSmallIssue extends React.Component {
   constructor(props) {
@@ -15,8 +16,8 @@ class AddSmallIssue extends React.Component {
           onChange={(e) => this.setState({text: e.target.value})}/>
         <div className="btns">
           <button className="btn-textDone" onClick={() => {
-            axios.post("http://15.165.161.223:4000/main/comment",{
-              text:this.state.text,
+            axios.post("http://15.165.161.223:4000/main/small",{
+              title:this.state.text,
               postId:this.props.postId,
               credentials:"include"
             },{      
@@ -26,10 +27,11 @@ class AddSmallIssue extends React.Component {
             })
             .then(resp=>{
               this.props.handleIssue(resp.data);
+              this.props.toggleWriting();
             })
           }}>완료</button>
           <button className="btn-textQuit" onClick={
-            /* 메인으로돌아가기 */
+            this.props.toggleWriting
           }>취소</button>
         </div>
       </div>

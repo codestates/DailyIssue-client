@@ -126,6 +126,7 @@ class App extends React.Component {
                       userinfo={this.state.userinfo}
                       handleAddComment={this.handleAddComment}
                       isWriting={this.state.isWriting}
+                      toggleWriting={()=>this.setState({isWriting:!this.state.isWriting})}
                       />
                   </div>
                 </div>)

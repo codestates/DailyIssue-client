@@ -110,11 +110,11 @@ function SideNav(props) {
           </tbody>
         </table>
     </div>
-    <div onClick={handleRandomIssue}>
-      Go to Random issue
-    </div>
     <div>
 
+    </div>
+    <div className="Hot_Issue" onClick={handleRandomIssue}>
+      Go to Random issue
     </div>
     <div className="Hot_Issue">
       Hot Issues

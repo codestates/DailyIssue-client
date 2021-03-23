@@ -3,6 +3,7 @@ import "./Contents.css"
 import Main from "../pages/Main"
 import Mypage from '../pages/Mypage'
 import Comments from './Comments'
+import AddSmallIssue from './AddSmallIssue'
 
 function contents(props){
 
@@ -19,7 +20,7 @@ function contents(props){
           disagree={props.disagree}
           hotIssues={props.hotIssues}
           userinfo={props.userinfo}
-          handleIssue={props.handleIssue} 
+          handleIssue={props.handleIssue}
           />
           {
             props.voted ? 
@@ -32,6 +33,7 @@ function contents(props){
         postId={props.postId}
         userinfo={props.userinfo}
         handleIssue={props.handleIssue} 
+        toggleWriting={props.toggleWriting} 
         ></AddSmallIssue>
       }
     </div>
