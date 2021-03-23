@@ -51,7 +51,7 @@ function SideNav(props) {
       });
     }
     else{
-      //새 사소한이슈 등록으로 이동
+      if(props.date===today.format('YYYY-MM-DD')) props.toggleWriting();
     }
   }
 
