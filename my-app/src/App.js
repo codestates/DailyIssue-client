@@ -20,6 +20,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       isLogin: true,
+      isWriting: false,
       userinfo: null,
       date:today(),
       postId:0,
@@ -114,6 +115,11 @@ class App extends React.Component {
       this.props.history.push("/")
     })
     .catch(e=>console.log(e));
+  axios.get(`http://15.165.161.223:4000/main/hotissue/`)
+  .then(data=>{
+    this.handleHotIssue(data.data.hotIssues);
+  })
+  .catch(e=>console.log("not found hotIssues"));
   }
   render() {
     const { isLogin, userinfo } = this.state;
@@ -125,14 +131,16 @@ class App extends React.Component {
             if (!isLogin) {
               return (
                 <div>
-                  <Nav userinfo={this.state.userinfo}/>
+                  <Nav userinfo={this.state.userinfo}
+                      toggleWriting={()=>this.setState({isWriting:!this.state.isWriting})}/>
                   <div className="Components">
                     <SideNav hotIssues={this.state.hotIssues} 
                       date={this.state.date}
                       handleDate={this.handleDate}
                       handleHotIssue={this.handleHotIssue} 
                       handleIssue={this.handleIssue} 
-                      userinfo={this.state.userinfo}/>
+                      userinfo={this.state.userinfo}
+                      toggleWriting={()=>this.setState({isWriting:!this.state.isWriting})}/>
                     <Contents handleIssue={this.handleIssue} 
                       postId={this.state.postId}
                       title={this.state.title}
@@ -144,6 +152,8 @@ class App extends React.Component {
                       userinfo={this.state.userinfo}
                       handleAddComment={this.handleAddComment}
                       handleSubmitLike={this.handleSubmitLike}
+                      isWriting={this.state.isWriting}
+                      toggleWriting={()=>this.setState({isWriting:!this.state.isWriting})}
                       />
                   </div>
                 </div>)

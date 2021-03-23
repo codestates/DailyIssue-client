@@ -23,9 +23,36 @@ function SideNav(props) {
     .catch(e=>console.log("not found dailyIssue"));
     axios.get(`http://15.165.161.223:4000/main/hotissue/${date}`)
     .then(data=>{
+      console.log(data.data.hotIssues);
       props.handleHotIssue(data.data.hotIssues);
     })
     .catch(e=>console.log("not found hotIssues"));
+  };
+  const handleRandomIssue=function(){
+    axios.get(`http://15.165.161.223:4000/main/small/`,{      
+      headers:{
+        Authorization:`bear ${props.userinfo}`
+      }
+    })
+    .then(data=>{
+      props.handleIssue(data.data);
+    });
+  }
+
+  const handleHotIssueClick=function(issueId){
+    if(issueId!==undefined){
+      axios.get(`http://15.165.161.223:4000/main/small/${issueId}`,{      
+        headers:{
+          Authorization:`bear ${props.userinfo}`
+        }
+      })
+      .then(data=>{
+        props.handleIssue(data.data);
+      });
+    }
+    else{
+      if(props.date===today.format('YYYY-MM-DD')) props.toggleWriting();
+    }
   }
 
   const calendarArr=()=>{
@@ -39,7 +66,7 @@ function SideNav(props) {
               let days = today.clone().startOf('year').week(week).startOf('week').add(index, 'day'); //d로해도되지만 직관성
               if(moment().format('YYYYMMDD') === days.format('YYYYMMDD')){
                 return(
-                    <td key={index} style={{backgroundColor:'red'}} >
+                    <td key={index} style={{backgroundColor:'red'}} onClick={()=>handleCalenderClick(days.format('YYYY-MM-DD'))}>
                       <span>{days.format('D')}</span>
                     </td>
                 );
@@ -84,10 +111,16 @@ function SideNav(props) {
           </tbody>
         </table>
     </div>
+    <div>
+
+    </div>
+    <div className="Hot_Issue" onClick={handleRandomIssue}>
+      Go to Random issue
+    </div>
     <div className="Hot_Issue">
       Hot Issues
         <ul>
-          {hotIssues.map((hotIssue,index)=><li className="li" key={index}>{hotIssue.title}</li>)}
+          {hotIssues.map((hotIssue,index)=><li className="li" key={index} onClick={()=>handleHotIssueClick(hotIssue.postId)}>{hotIssue.title}</li>)}
         </ul>
     </div>
     <br></br>

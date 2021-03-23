@@ -21,8 +21,8 @@ class Comments extends React.Component {
                 <>
                 <ul className="root-comments">
                     {this.props.comments.map((comment,i)=>{
-                        console.log(comment.commentId);
                         return <Comment key={i} comment={comment.text} isAgree={comment.agree} handleSubmitLike={this.props.handleSubmitLike.bind(null, comment.commentId)}/>
+
                     })}
                 </ul>
                 <button id="btn-addComment" onClick={() => {this.setState({isBtn: !this.state.isBtn})}}>새 덧글 생성하기</button>
