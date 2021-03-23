@@ -12,15 +12,24 @@ import Contents from './components/Contents';
 
 
 class App extends React.Component {
-  state = {
-    isLogin: true,
-    userinfo: null,
+  constructor(props){
+    super(props)
+    this.state = {
+      isLogin: true,
+      userinfo: null,
+    }
+    this.handleLogout = this.handleLogout.bind(this); 
   }
   handleResponseSuccess(token) {
     this.setState({ isLogin: false, userinfo:token })
     this.props.history.push("/")
     console.log("asdf");
   }
+  handleLogout() {
+    this.setState({ isLogin: true, userinfo: null });
+    this.props.history.push('/');
+    console.log("로그아웃")
+}
   render() {
     const { isLogin, userinfo } = this.state;
 
@@ -31,7 +40,7 @@ class App extends React.Component {
             if (!isLogin) {
               return (
                 <div>
-                  <Nav userinfo={this.state.userinfo}/>
+                  <Nav userinfo={this.state.userinfo} handleLogout={this.handleLogout}/>
                   <div className="Components">
                     <SideNav userinfo={this.state.userinfo}/>
                     <Contents userinfo={this.state.userinfo}/>
