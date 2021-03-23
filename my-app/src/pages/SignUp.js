@@ -9,6 +9,7 @@ class SignUp extends Component {
         this.state = {
             userid: "",
             password: "",
+            confirmPassword: "",
             email: "",
             nickname: "",
             errorMessage: "",
@@ -22,16 +23,21 @@ class SignUp extends Component {
     };
 
     handleSignUp = () => {
-        const { userid, password, email, nickname } = this.state;
+        const { userid, password, confirmPassword, email, nickname } = this.state;
         const regex = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
         this.setState({
             errorMessage: "",
             // signUpCheck: false,
         })
 
-        if (!userid || !password) {
+        if (!userid) {
             this.setState({
-                errorMessage: "Invalid User ID or PassWord"
+                errorMessage: "Invalid User ID"
+            });
+            return;
+        } else if (password !== confirmPassword) {
+            this.setState({
+                errorMessage: "Passwords don't match"
             });
             return;
         } else if (!regex.test(email)) {
@@ -93,8 +99,9 @@ class SignUp extends Component {
                             <h1>Will YOU JOIN US?</h1>
                             <input type="text" tabIndex="1" placeholder="✉️ UserID" onChange={this.handleInputValue("userid")} />
                             <input type="password" tabIndex="2" placeholder="🔑 Password" onChange={this.handleInputValue("password")} />
-                            <input type="email" tabIndex="3" placeholder="＠ Email" onChange={this.handleInputValue("email")} />
-                            <input type="text" tabIndex="4" placeholder="🅽 Nick Name" onChange={this.handleInputValue("nickname")} />
+                            <input type="password" tabIndex="3" placeholder="Confirm Password" onChange={this.handleInputValue("confirmPassword")} />
+                            <input type="email" tabIndex="4" placeholder="＠ Email" onChange={this.handleInputValue("email")} />
+                            <input type="text" tabIndex="5" placeholder="🅽 Nick Name" onChange={this.handleInputValue("nickname")} />
                             {this.state.errorMessage ?
                                 <div id="invalid-ment">
                                     {this.state.errorMessage}

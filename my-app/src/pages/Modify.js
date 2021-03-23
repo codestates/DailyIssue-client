@@ -92,9 +92,9 @@ class SignUp extends Component {
                     {!this.state.signUpCheck ?
                         <>
                             <h1> </h1>
-                            <input type="text" tabIndex="1" placeholder="🅽 Nick Name" onChange={this.handleInputValue("nickname")} />
-                            <input type="email" tabIndex="3" placeholder="＠ Email" onChange={this.handleInputValue("email")} />
-                            <input type="password" tabIndex="2" placeholder="🔑 Password" onChange={this.handleInputValue("password")} />
+                            <input type="text" tabIndex="1" placeholder="🔑 Current password" onChange={this.handleInputValue("nickname")} />
+                            <input type="email" tabIndex="3" placeholder="New password" onChange={this.handleInputValue("email")} />
+                            <input type="password" tabIndex="2" placeholder="Confirm New Password" onChange={this.handleInputValue("password")} />
                             {this.state.errorMessage ?
                                 <div id="invalid-ment">
                                     {this.state.errorMessage}

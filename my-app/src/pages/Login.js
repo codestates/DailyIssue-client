@@ -81,34 +81,32 @@ class LoginPage extends React.Component {
         return (
             <div>
                 <br></br>
-            <div id="login-wrap">
-                <div id="right-side">
-                    <div id="login-form">
-                        <div id="title-bar">
-                            <div id="title">TODAY ISSUE</div>
-                            <div id="today-title">Show your opinion</div>
-                        </div>
-                        <div id="input-box">
-                            <input type="text" placeholder="✉️ UserID" onChange={this.handleInputValue("userId")} />
-                            <input id="input-password" type="password" placeholder="🔑 Password" onChange={this.handleInputValue("password")} />
-                            <button id="login-btn" onClick={this.handleLogin}>Login</button>
-                        </div>
-                        {this.state.errorMessage ?
-                            <div id="invalid-ment">
-                                {this.state.errorMessage}
-                            </div> : ''}
-                        {/* <div id="invalid-ment">Invalid ID</div> */}
-                        <button id="guest-btn" onClick={this.props.handleGuestLogin}>Start as a Guest<br />(view only)</button>
-                        <button id="signup-btn" onClick={this.handleSignUpModalOn}>SignUp</button>
-                        <div id="login-with">
-                            <button id="github-login"><img src={githubImg} alt="github-login-icon" id="github-login-icon" /></button>
-                            <a href={gooleUrl}><button id="google-login"><img src={googleImg} alt="google-login-icon" id="google-login-icon" /></button></a>
+                <div id="login-wrap">
+                    <div id="right-side">
+                        <div id="login-form">
+                            <div id="title-bar">
+                                <div id="title">TODAY ISSUE</div>
+                                <div id="today-title">Show your opinion</div>
+                            </div>
+                            <div id="input-box">
+                                <input type="text" placeholder="✉️ UserID" onChange={this.handleInputValue("userId")} />
+                                <input id="input-password" type="password" placeholder="🔑 Password" onChange={this.handleInputValue("password")} />
+                                <button id="login-btn" onClick={this.handleLogin}>Login</button>
+                            </div>
+                            {this.state.errorMessage ?
+                                <div id="invalid-ment">
+                                    {this.state.errorMessage}
+                                </div> : ''}
+                            <button id="guest-btn" onClick={this.props.handleGuestLogin}>Start as a Guest<br />(view only)</button>
+                            <button id="signup-btn" onClick={this.handleSignUpModalOn}>SignUp</button>
+                            <div id="login-with">
+                                <button id="github-login"><img src={githubImg} alt="github-login-icon" id="github-login-icon" /></button>
+                                <a href={gooleUrl}><button id="google-login"><img src={googleImg} alt="google-login-icon" id="google-login-icon" /></button></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                {/* <SingUp isOpen={this.state.signUpModalOn} /> */}
-                <SignUp isOpen={this.state.signUpModalOn} handleSignUpModalOn={this.handleSignUpModalOn} />
-            </div >
+                    <SignUp isOpen={this.state.signUpModalOn} handleSignUpModalOn={this.handleSignUpModalOn} />
+                </div >
             </div>
         )
 

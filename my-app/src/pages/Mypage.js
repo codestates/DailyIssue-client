@@ -8,18 +8,17 @@ class Mypage extends React.Component {
     super(props);
     this.state = {
       signUpModalOn: false,
+      errorMessage: ""
+
     }
     this.handleSignUpModalOn = this.handleSignUpModalOn.bind(this);
   }
-  // componentDidMount() {
-  //   axios.get("http://15.165.161.223:4000/mypage",)
-  //     .then(data => console.log(data));
-  // }
-
   // headers:{
   //   Authorization:`bear ${this.state.userinfo}`,
   //   credentials:'include'
   // }
+
+
 
 
   handleSignUpModalOn = (e) => {
@@ -31,7 +30,8 @@ class Mypage extends React.Component {
 
 
   render() {
-    console.log(this.props)
+    console.log("Mypage this.props : ", this.props);
+    console.log("Mypage this.state : ", this.state);
     return (
       <>
         <div id="mypage-wrap">
@@ -42,38 +42,37 @@ class Mypage extends React.Component {
                 <label htmlFor="">Nickname</label>
               </li>
               <li id="mypage-nickname-input">
-                <input type="text" placeholder="userNickname" />
+                <input type="text" placeholder={this.props.userdata.nickname} />
+                {/* {this.props.userdata.nickname} */}
               </li>
               <li id="mypage-email">
                 <label htmlFor="">Email</label>
               </li>
               <li id="mypage-email-input">
-                <input type="text" placeholder="user@code.com" />
+                <input type="text" value={this.props.userdata.email} readOnly />
+                {/* {this.props.userdata.email} */}
               </li>
+              {this.state.errorMessage ?
+                <div id="invalid-ment">
+                  {this.state.errorMessage}
+                </div> : ''}
               <div id="mypage-modify">
-                <button id="modifybtn" onClick={this.handleSignUpModalOn}>save</button>
-                <button id="changepasswordbtn">Change Password</button>
+                <button id="modifybtn" >save</button>
+                <button id="changepasswordbtn" onClick={this.handleSignUpModalOn}>Change Password</button>
               </div>
             </ul>
-            {/* <div id="mypage-bottom"> */}
-            {/* <button id="changepasswordbtn">Change Password</button> */}
-            {/* </div> */}
           </div>
           <Modify isOpen={this.state.signUpModalOn} handleSignUpModalOn={this.handleSignUpModalOn} />
         </div>
-        {/* <div id="info-wrap"> */}
         <div id="like-wrap">
           <h1>Number of Likes</h1>
-          <div>👍 123 </div>
-          {/* <div id="numberoflike">123</div> */}
+          <div>👍 {this.props.like} </div>
         </div>
-
         <div id="rank-wrap">
           <h1>Rank</h1>
           <div>🔺11</div>
-          {/* <div id="numberoflike">123</div> */}
         </div>
-        {/* </div> */}
+
       </>
     )
   }
