@@ -18,7 +18,8 @@ function contents(props){
           hotIssues={props.hotIssues}
           userinfo={props.userinfo}
           handleIssue={props.handleIssue} 
-          userinfo={props.userinfo}/>
+          userinfo={props.userinfo}
+          />
           {
             props.voted ? 
             <Comments comments={props.comments} handleAddComment={props.handleAddComment}/>

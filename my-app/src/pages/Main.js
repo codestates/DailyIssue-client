@@ -26,7 +26,7 @@ class Main extends React.Component {
       <div>
         <h1 className="title">{this.props.title}</h1>
         <div className="icon">
-        {!this.props.voted
+        {!this.props.voted // voted가 0일 때 나옴...
         ?(<>
           <div className="yes" onClick={()=>this.vote(1)}>
             <img src="../check-mark.png"width="200px" height="200px"/>
@@ -36,11 +36,14 @@ class Main extends React.Component {
             <img src="../negative.png"width="200px" height="200px"/>
           </div>          
         </>)
-        :(<>
-          <div className="yes">{this.props.agree}</div>
-          {/* <div className="empty"></div> */}
-          <div className="no">{this.props.disagree}</div>
-        </>)}
+        : 
+        <>
+          <div className="yes-no">
+            <div className="yes">{this.props.agree}</div>
+            <div className="no">{this.props.disagree}</div>
+          </div>
+        </>
+        }
         </div>
       </div>
     );

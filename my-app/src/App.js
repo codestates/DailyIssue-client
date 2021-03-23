@@ -53,12 +53,13 @@ class App extends React.Component {
       }
     }
     )
+    .then(console.log);
   }
 
   handleDate(date){
     this.setState({date});
   }
-  
+
   handleIssue(data){
     console.log(data);
     const newState={
