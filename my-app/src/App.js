@@ -95,6 +95,11 @@ class App extends React.Component {
       this.props.history.push("/")
     })
     .catch(e=>console.log(e));
+  axios.get(`http://15.165.161.223:4000/main/hotissue/`)
+  .then(data=>{
+    this.handleHotIssue(data.data.hotIssues);
+  })
+  .catch(e=>console.log("not found hotIssues"));
   }
   render() {
     const { isLogin, userinfo } = this.state;

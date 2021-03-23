@@ -21,7 +21,6 @@ class Comments extends React.Component {
                 <>
                 <ul className="root-comments">
                     {this.props.comments.map((comment,i)=>{
-                        console.log(comment.agree);
                         return <Comment key={i} comment={comment.text} isAgree={comment.agree}/>
                     })}
                 </ul>
