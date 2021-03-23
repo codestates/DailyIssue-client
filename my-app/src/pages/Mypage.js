@@ -42,14 +42,14 @@ class Mypage extends React.Component {
                 <label htmlFor="">Nickname</label>
               </li>
               <li id="mypage-nickname-input">
-                <input type="text" placeholder={this.props.userdata.nickname} />
+                <input type="text" placeholder="{this.props.userdata.nickname}" />
                 {/* {this.props.userdata.nickname} */}
               </li>
               <li id="mypage-email">
                 <label htmlFor="">Email</label>
               </li>
               <li id="mypage-email-input">
-                <input type="text" value={this.props.userdata.email} readOnly />
+                <input type="text" value="{this.props.userdata.email}" readOnly />
                 {/* {this.props.userdata.email} */}
               </li>
               {this.state.errorMessage ?
