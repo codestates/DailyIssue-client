@@ -17,7 +17,7 @@ function contents(props){
         path="/"
           render={()=> {
          return ( 
-         {!props.isWriting
+         !props.isWriting
           ?<>
             <Main 
               postId={props.postId}
@@ -42,7 +42,7 @@ function contents(props){
             handleIssue={props.handleIssue} 
             toggleWriting={props.toggleWriting} 
             ></AddSmallIssue>
-          })
+          )
         }}/>
         <Route
             exact
