@@ -27,6 +27,32 @@ function SideNav(props) {
     })
     .catch(e=>console.log("not found hotIssues"));
   }
+  const handleRandomIssue=function(){
+    axios.get(`http://15.165.161.223:4000/main/small/`,{      
+      headers:{
+        Authorization:`bear ${props.userinfo}`
+      }
+    })
+    .then(data=>{
+      props.handleIssue(data.data);
+    });
+  }
+
+  const handleHotIssueClick=function(issueId){
+    if(issueId!==undefined){
+      axios.get(`http://15.165.161.223:4000/main/small/${issueId}`,{      
+        headers:{
+          Authorization:`bear ${props.userinfo}`
+        }
+      })
+      .then(data=>{
+        props.handleIssue(data.data);
+      });
+    }
+    else{
+      //새 사소한이슈 등록으로 이동
+    }
+  }
 
   const calendarArr=()=>{
     let result = [];
@@ -84,10 +110,16 @@ function SideNav(props) {
           </tbody>
         </table>
     </div>
+    <div onClick={handleRandomIssue}>
+      Go to Random issue
+    </div>
+    <div>
+
+    </div>
     <div className="Hot_Issue">
       Hot Issues
         <ul>
-          {hotIssues.map((hotIssue,index)=><li className="li" key={index}>{hotIssue.title}</li>)}
+          {hotIssues.map((hotIssue,index)=><li className="li" key={index} onClick={()=>handleHotIssueClick(hotIssue.postId)}>{hotIssue.title}</li>)}
         </ul>
     </div>
     <br></br>
