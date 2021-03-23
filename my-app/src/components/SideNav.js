@@ -17,11 +17,10 @@ function SideNav(props) {
       }
     })
     .then(data=>{
-      console.log("???");
       props.handleIssue(data.data);
     })
     .catch(e=>console.log("not found dailyIssue"));
-    axios.get(`http://15.165.161.223:4000/main/hotissue/${date}`)
+    axios.get(`http://localhost:4000/main/hotissue/${date}`)
     .then(data=>{
       console.log(data.data.hotIssues);
       props.handleHotIssue(data.data.hotIssues);

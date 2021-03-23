@@ -37,6 +37,7 @@ class App extends React.Component {
     this.handleResponseSuccess=this.handleResponseSuccess.bind(this);
     this.handleAddComment = this.handleAddComment.bind(this);
     this.handleSubmitLike = this.handleSubmitLike.bind(this);
+    this.handleLogout=this.handleLogout.bind(this);
   }
 
   handleSubmitLike(id) {
@@ -125,7 +126,7 @@ class App extends React.Component {
     this.setState({ isLogin: true, userinfo: null });
     this.props.history.push('/');
     console.log("로그아웃")
-}
+  }
   render() {
     const { isLogin, userinfo } = this.state;
 
