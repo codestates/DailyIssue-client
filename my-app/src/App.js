@@ -34,6 +34,25 @@ class App extends React.Component {
     this.handleHotIssue=this.handleHotIssue.bind(this);
     this.handleDate=this.handleDate.bind(this);
     this.handleResponseSuccess=this.handleResponseSuccess.bind(this);
+    this.handleAddComment = this.handleAddComment.bind(this);
+  }
+
+  handleAddComment(id, text) {
+    console.log(id, text);
+    // 댓글 추가 했을 때, 댓글 내용이 null로 db에 저장되는 문제..
+    axios
+    .post("http://15.165.161.223:4000/main/comment", 
+    {
+      "postId": id,
+      "text": text
+    }, 
+    {
+      headers: {
+        Authorization:`bear ${this.state.userinfo}`,
+        credentials:'include'
+      }
+    }
+    )
   }
 
   handleDate(date){
@@ -101,7 +120,9 @@ class App extends React.Component {
                       disagree={this.state.disagree}
                       comments={this.state.comments}
                       hotIssues={this.state.hotIssues}
-                      userinfo={this.state.userinfo}/>
+                      userinfo={this.state.userinfo}
+                      handleAddComment={this.handleAddComment}
+                      />
                   </div>
                 </div>)
             }

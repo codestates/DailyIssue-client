@@ -2,6 +2,7 @@ import React from "react"
 import "./Contents.css"
 import Main from "../pages/Main"
 import Mypage from '../pages/Mypage'
+import Comments from './Comments'
 
 function contents(props){
 
@@ -14,11 +15,16 @@ function contents(props){
           voted={props.voted}
           agree={props.agree}
           disagree={props.disagree}
-          comments={props.comments}
           hotIssues={props.hotIssues}
           userinfo={props.userinfo}
           handleIssue={props.handleIssue} 
           userinfo={props.userinfo}/>
+          {
+            props.voted ? 
+            <Comments comments={props.comments} handleAddComment={props.handleAddComment}/>
+            :
+            null
+          }
     </div>
   )
 }
