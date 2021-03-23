@@ -121,6 +121,11 @@ class App extends React.Component {
   })
   .catch(e=>console.log("not found hotIssues"));
   }
+  handleLogout() {
+    this.setState({ isLogin: true, userinfo: null });
+    this.props.history.push('/');
+    console.log("로그아웃")
+}
   render() {
     const { isLogin, userinfo } = this.state;
 
@@ -132,6 +137,7 @@ class App extends React.Component {
               return (
                 <div>
                   <Nav userinfo={this.state.userinfo}
+                      handleLogout={this.handleLogout}
                       toggleWriting={()=>this.setState({isWriting:!this.state.isWriting})}/>
                   <div className="Components">
                     <SideNav hotIssues={this.state.hotIssues} 
