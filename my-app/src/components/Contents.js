@@ -17,12 +17,11 @@ function contents(props){
           disagree={props.disagree}
           hotIssues={props.hotIssues}
           userinfo={props.userinfo}
-          handleIssue={props.handleIssue} 
-          userinfo={props.userinfo}
+          handleIssue={props.handleIssue}
           />
           {
             props.voted ? 
-            <Comments comments={props.comments} handleAddComment={props.handleAddComment}/>
+            <Comments comments={props.comments} handleAddComment={props.handleAddComment} handleSubmitLike={props.handleSubmitLike}/>
             :
             null
           }

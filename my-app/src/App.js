@@ -35,6 +35,23 @@ class App extends React.Component {
     this.handleDate=this.handleDate.bind(this);
     this.handleResponseSuccess=this.handleResponseSuccess.bind(this);
     this.handleAddComment = this.handleAddComment.bind(this);
+    this.handleSubmitLike = this.handleSubmitLike.bind(this);
+  }
+
+  handleSubmitLike(id) {
+    console.log(id);
+    axios
+    .post('http://15.165.161.223:4000/main/like', {
+      commentId: id
+    }, 
+    {
+      headers: {
+        Authorization: `Bearer ${this.state.userinfo}`,
+        credentials:'include'
+      }
+    })
+    // 새로운 댓글 리스트를 반환할 예정
+    .then(console.log);
   }
 
   handleAddComment(id, text) {
@@ -53,7 +70,10 @@ class App extends React.Component {
       }
     }
     )
-    .then(console.log);
+    .then(data => {
+      console.log(data);
+      this.setState({comments: data.data.comments})
+    });
   }
 
   handleDate(date){
@@ -123,6 +143,7 @@ class App extends React.Component {
                       hotIssues={this.state.hotIssues}
                       userinfo={this.state.userinfo}
                       handleAddComment={this.handleAddComment}
+                      handleSubmitLike={this.handleSubmitLike}
                       />
                   </div>
                 </div>)
