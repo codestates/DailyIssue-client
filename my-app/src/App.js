@@ -119,7 +119,8 @@ class App extends React.Component {
                       handleDate={this.handleDate}
                       handleHotIssue={this.handleHotIssue} 
                       handleIssue={this.handleIssue} 
-                      userinfo={this.state.userinfo}/>
+                      userinfo={this.state.userinfo}
+                      toggleWriting={()=>this.setState({isWriting:!this.state.isWriting})}/>
                     <Contents handleIssue={this.handleIssue} 
                       postId={this.state.postId}
                       title={this.state.title}
