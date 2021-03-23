@@ -20,6 +20,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       isLogin: true,
+      isWriting: false,
       userinfo: null,
       date:today(),
       postId:0,
@@ -94,6 +95,11 @@ class App extends React.Component {
       this.props.history.push("/")
     })
     .catch(e=>console.log(e));
+  axios.get(`http://15.165.161.223:4000/main/hotissue/`)
+  .then(data=>{
+    this.handleHotIssue(data.data.hotIssues);
+  })
+  .catch(e=>console.log("not found hotIssues"));
   }
   render() {
     const { isLogin, userinfo } = this.state;
@@ -105,7 +111,8 @@ class App extends React.Component {
             if (!isLogin) {
               return (
                 <div>
-                  <Nav userinfo={this.state.userinfo}/>
+                  <Nav userinfo={this.state.userinfo}
+                      toggleWriting={()=>this.setState({isWriting:!this.state.isWriting})}/>
                   <div className="Components">
                     <SideNav hotIssues={this.state.hotIssues} 
                       date={this.state.date}
@@ -123,6 +130,8 @@ class App extends React.Component {
                       hotIssues={this.state.hotIssues}
                       userinfo={this.state.userinfo}
                       handleAddComment={this.handleAddComment}
+                      isWriting={this.state.isWriting}
+                      toggleWriting={()=>this.setState({isWriting:!this.state.isWriting})}
                       />
                   </div>
                 </div>)
