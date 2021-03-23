@@ -1,0 +1,30 @@
+.root-addComment {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+}
+.body-text {
+  flex: 1 0 auto;
+  resize: none;
+  padding: 1%;
+  font-size: 1.25rem;
+}
+.btn-textDone {
+  flex: 1;
+  height: 50px;
+  margin-top: 1%;
+  background-color: #16c79a;
+  border: none;
+  color: white;
+}
+.btn-textQuit {
+  flex: 0.1;
+  height: 50px;
+  margin-top: 1%;
+  background-color: crimson;
+  border: none;
+  color: white;
+}
+.btns {
+  display: flex;
+}

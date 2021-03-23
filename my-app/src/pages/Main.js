@@ -24,8 +24,7 @@ class Main extends React.Component {
   render(){
     return (
       <div>
-        <h1 className="Today_Issue">Today Issue</h1>
-        <h3 className="title">{this.props.title}</h3>
+        <h1 className="title">{this.props.title}</h1>
         <div className="icon">
         {!this.props.voted
         ?(<>
@@ -39,9 +38,8 @@ class Main extends React.Component {
         </>)
         :(<>
           <div className="yes">{this.props.agree}</div>
-          <div className="empty"></div>
+          {/* <div className="empty"></div> */}
           <div className="no">{this.props.disagree}</div>
-          {this.props.comments.map((comment,i)=><div key={i}>{comment.content}</div>)}
         </>)}
         </div>
       </div>
