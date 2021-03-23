@@ -21,7 +21,8 @@ class Comments extends React.Component {
                 <>
                 <ul className="root-comments">
                     {this.props.comments.map((comment,i)=>{
-                        return <Comment key={i} comment={comment.text}/>
+                        console.log(comment.agree);
+                        return <Comment key={i} comment={comment.text} isAgree={comment.agree}/>
                     })}
                 </ul>
                 <button id="btn-addComment" onClick={() => {this.setState({isBtn: !this.state.isBtn})}}>새 덧글 생성하기</button>
@@ -31,7 +32,7 @@ class Comments extends React.Component {
                 <ul className="root-comments">
                     {this.props.comments.map((comment,i)=>{
                         console.log(comment);
-                        return <Comment key={i} comment={comment.text}/>
+                        return <Comment key={i} comment={comment.text} isAgree={comment.agree}/>
                     })}
                 </ul>
                 <AddComment handleAddComment={this.props.handleAddComment} isBtnFalse={() => {this.setState({isBtn: false})}}/>

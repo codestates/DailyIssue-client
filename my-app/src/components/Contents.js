@@ -9,6 +9,8 @@ function contents(props){
 
   return (
     <div className="Contents">
+      {!props.isWriting
+      ?<>
         <Main 
           postId={props.postId}
           title={props.title}
@@ -18,13 +20,20 @@ function contents(props){
           hotIssues={props.hotIssues}
           userinfo={props.userinfo}
           handleIssue={props.handleIssue} 
-          userinfo={props.userinfo}/>
+          />
           {
             props.voted ? 
             <Comments comments={props.comments} handleAddComment={props.handleAddComment}/>
             :
             null
           }
+        </>
+      :<AddSmallIssue
+        postId={props.postId}
+        userinfo={props.userinfo}
+        handleIssue={props.handleIssue} 
+        ></AddSmallIssue>
+      }
     </div>
   )
 }

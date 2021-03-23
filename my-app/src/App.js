@@ -20,6 +20,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       isLogin: true,
+      isWriting: false,
       userinfo: null,
       date:today(),
       postId:0,
@@ -53,12 +54,13 @@ class App extends React.Component {
       }
     }
     )
+    .then(console.log);
   }
 
   handleDate(date){
     this.setState({date});
   }
-  
+
   handleIssue(data){
     console.log(data);
     const newState={
@@ -104,7 +106,8 @@ class App extends React.Component {
             if (!isLogin) {
               return (
                 <div>
-                  <Nav userinfo={this.state.userinfo}/>
+                  <Nav userinfo={this.state.userinfo}
+                      toggleWriting={()=>this.setState({isWriting:!this.state.isWriting})}/>
                   <div className="Components">
                     <SideNav hotIssues={this.state.hotIssues} 
                       date={this.state.date}
@@ -122,6 +125,7 @@ class App extends React.Component {
                       hotIssues={this.state.hotIssues}
                       userinfo={this.state.userinfo}
                       handleAddComment={this.handleAddComment}
+                      isWriting={this.state.isWriting}
                       />
                   </div>
                 </div>)
