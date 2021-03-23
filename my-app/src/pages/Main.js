@@ -39,8 +39,8 @@ class Main extends React.Component {
         : 
         <>
           <div className="yes-no">
-            <div className="yes">{this.props.agree}</div>
-            <div className="no">{this.props.disagree}</div>
+            <div className="yes">{`${Math.round((this.props.agree / (this.props.agree + this.props.disagree)) * 100)}%`}</div>
+            <div className="no">{`${Math.round((this.props.disagree / (this.props.agree + this.props.disagree)) * 100)}%`}</div>
           </div>
         </>
         }

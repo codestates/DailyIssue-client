@@ -14,14 +14,15 @@ class Comments extends React.Component {
     render(){
     return (
         <>
-        {/* <HotComment/> */}
+        <HotComment comments={this.props.comments}/>
             {
                 !this.state.isBtn 
                 ?
                 <>
                 <ul className="root-comments">
                     {this.props.comments.map((comment,i)=>{
-                        return <Comment key={i} comment={comment.text} isAgree={comment.agree}/>
+                        return <Comment key={i} comment={comment.text} isAgree={comment.agree} handleSubmitLike={this.props.handleSubmitLike.bind(null, comment.commentId)}/>
+
                     })}
                 </ul>
                 <button id="btn-addComment" onClick={() => {this.setState({isBtn: !this.state.isBtn})}}>새 덧글 생성하기</button>
@@ -30,8 +31,8 @@ class Comments extends React.Component {
                 <>
                 <ul className="root-comments">
                     {this.props.comments.map((comment,i)=>{
-                        console.log(comment);
-                        return <Comment key={i} comment={comment.text} isAgree={comment.agree}/>
+                        console.log(comment.commentId);
+                        return <Comment key={i} comment={comment.text} isAgree={comment.agree} handleSubmitLike={this.props.handleSubmitLike.bind(null, comment.commentId)}/>
                     })}
                 </ul>
                 <AddComment handleAddComment={this.props.handleAddComment} isBtnFalse={() => {this.setState({isBtn: false})}}/>

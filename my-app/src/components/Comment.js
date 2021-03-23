@@ -16,11 +16,11 @@ class Comment extends React.Component {
                         <img className="profileImg" src={defaultProfile}></img>
                     </div>
                     <div className="root-comment">{this.props.comment}</div>
-                    <button className="btn-like"><img className="btn-up-img" src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"/></button>
+                    <button className="btn-like" onClick={this.props.handleSubmitLike}><img className="btn-up-img" src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"/></button>
                 </li>
             :
                 <li className="root-commentBox-disagree">
-                    <button className="btn-like"><img className="btn-up-img" src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"/></button>
+                    <button className="btn-like" onClick={this.props.handleSubmitLike}><img className="btn-up-img" src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"/></button>
                     <div className="root-comment-disagree">{this.props.comment}</div>
                     <div className="root-commentPic">
                         <img className="profileImg" src={defaultProfile}></img>

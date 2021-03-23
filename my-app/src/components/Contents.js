@@ -24,7 +24,7 @@ function contents(props){
           />
           {
             props.voted ? 
-            <Comments comments={props.comments} handleAddComment={props.handleAddComment}/>
+            <Comments comments={props.comments} handleAddComment={props.handleAddComment} handleSubmitLike={props.handleSubmitLike}/>
             :
             null
           }

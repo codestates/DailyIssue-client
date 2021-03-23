@@ -11,8 +11,8 @@
 }
 .btn-textDone {
   flex: 1;
+  margin-top: 10px;
   height: 50px;
-  margin-top: 1%;
   background-color: #16c79a;
   border: none;
   color: white;
