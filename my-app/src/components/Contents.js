@@ -8,7 +8,6 @@ import AddSmallIssue from './AddSmallIssue'
 
 
 function contents(props) {
-  console.log("contents.props : ", props)
   return (
     <div className="Contents">
       <Switch>

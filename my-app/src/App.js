@@ -70,7 +70,6 @@ class App extends React.Component {
 
 
   handleSubmitLike(id) {
-    console.log(id);
     axios
       .post('http://15.165.161.223:4000/main/like', {
         commentId: id
@@ -86,7 +85,6 @@ class App extends React.Component {
   }
 
   handleAddComment(id, text) {
-    console.log(id, text);
     axios
       .post("http://15.165.161.223:4000/main/comment",
         {
@@ -101,7 +99,6 @@ class App extends React.Component {
         }
       )
       .then(data => {
-        console.log(data);
         this.setState({ comments: data.data.comments })
       });
   }
@@ -111,7 +108,6 @@ class App extends React.Component {
   }
 
   handleIssue(data) {
-    console.log(data);
     const newState = {
       voted: data.voted,
       agree: (data.voted) ? data.agree : 0,
@@ -154,14 +150,10 @@ class App extends React.Component {
   handleLogout() {
     this.setState({ isLogin: true, userinfo: null });
     this.props.history.push('/');
-    console.log("로그아웃")
   }
 
   render() {
     const { isLogin, userinfo } = this.state;
-    console.log("App.state : ", this.state);
-    console.log("App.props : ", this.props);
-
     return (
       <div>
         <Switch>
