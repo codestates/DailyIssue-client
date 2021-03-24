@@ -148,7 +148,20 @@ class App extends React.Component {
       .catch(e => console.log("not found hotIssues"));
   }
   handleLogout() {
-    this.setState({ isLogin: true, userinfo: null });
+    this.setState({
+      isLogin: true,
+      isWriting: false,
+      userinfo: null,
+      arrCommentRank: [],
+      date: today(),
+      postId: 0,
+      title: null,
+      voted: false,
+      agree: 0,
+      disagree: 0,
+      comments: [],
+      hotIssues: []
+    });
     this.props.history.push('/');
   }
 
