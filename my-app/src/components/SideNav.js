@@ -29,23 +29,24 @@ function SideNav(props) {
       .catch(e => console.log("not found hotIssues"));
   };
   const handleRandomIssue = function () {
-    axios.get(`http://15.165.161.223:4000/main/small?date=${props.date}`, {
+    axios.get(`http://15.165.161.223:4000/main/small?date=${props.date}`,(props.userinfo)?{
       headers: {
         Authorization: `bear ${props.userinfo}`
       }
-    })
+    }:undefined)
       .then(data => {
+        console.log(data.data);
         props.handleIssue(data.data);
       });
   }
 
   const handleHotIssueClick = function (issueId) {
     if (issueId !== undefined) {
-      axios.get(`http://15.165.161.223:4000/main/small/${issueId}`, {
+      axios.get(`http://15.165.161.223:4000/main/small/${issueId}`, (props.userinfo)?{
         headers: {
           Authorization: `bear ${props.userinfo}`
         }
-      })
+      }:undefined)
         .then(data => {
           props.handleIssue(data.data);
         });

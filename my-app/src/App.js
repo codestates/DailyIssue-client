@@ -96,6 +96,7 @@ class App extends React.Component {
 
 
   handleSubmitLike(id) {
+    if(!this.state.userinfo) return;
     axios
       .post('http://15.165.161.223:4000/main/like', {
         commentId: id
@@ -137,9 +138,9 @@ class App extends React.Component {
   handleIssue(data) {
     const newState = {
       voted: data.voted,
-      agree: (data.voted||this.state.date!==today()) ? data.agree : 0,
-      disagree: (data.voted||this.state.date!==today()) ? data.disagree : 0,
-      comments: (data.voted||this.state.date!==today()) ? data.comments : []
+      agree: (data.agree) ? data.agree : 0,
+      disagree: (data.disagree) ? data.disagree : 0,
+      comments: (data.comments) ? data.comments : []
     };
     if (data.postId) {
       newState.postId = data.postId;
