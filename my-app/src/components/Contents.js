@@ -18,7 +18,7 @@ function contents(props) {
             return (
               !props.isWriting
                 ? <>
-                  <Main 
+                  <Main
                     postId={props.postId}
                     title={props.title}
                     voted={props.voted}
@@ -27,17 +27,17 @@ function contents(props) {
                     hotIssues={props.hotIssues}
                     userinfo={props.userinfo}
                     handleIssue={props.handleIssue}
-                    />
-                    {
-                      props.voted ? 
-                      <Comments 
-                        comments={props.comments} 
-                        handleAddComment={props.handleAddComment} 
-                        handleSubmitLike={props.handleSubmitLike} 
-                        postId={props.postId}/>
+                  />
+                  {
+                    props.voted ?
+                      <Comments
+                        comments={props.comments}
+                        handleAddComment={props.handleAddComment}
+                        handleSubmitLike={props.handleSubmitLike}
+                        postId={props.postId} />
                       :
                       null
-                    }
+                  }
                 </>
                 : <AddSmallIssue
                   postId={props.postId}
@@ -50,12 +50,14 @@ function contents(props) {
         <Route
           exact
           path='/mypage'
-          render={() => <Mypage 
-                          userinfo={props.userinfo} 
-                          userdata={props.userdata} 
-                          likeGet={props.likeGet} 
-                          likeGive={props.likeGive} 
-                          handleGetUserData={props.handleGetUserData}/>}
+          render={() => <Mypage
+            userinfo={props.userinfo}
+            userdata={props.userdata}
+            likeGet={props.likeGet}
+            likeGive={props.likeGive}
+            handleGetUserData={props.handleGetUserData}
+            handleLogout={props.handleLogout}
+          />}
         />
       </Switch>
     </div>
