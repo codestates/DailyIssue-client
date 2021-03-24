@@ -21,7 +21,6 @@ class Mypage extends React.Component {
   }
 
   handleInputValue = (e) => {
-    console.log(e.target.value);
     this.setState({ nickname: e.target.value });
   };
 

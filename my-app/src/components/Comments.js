@@ -13,6 +13,7 @@ class Comments extends React.Component {
         }
     }
     render(){
+        console.log(this.props.comments);
     return (
         <>
         <HotComment comments={this.props.comments}/>

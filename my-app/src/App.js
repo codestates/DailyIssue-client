@@ -31,9 +31,9 @@ class App extends React.Component {
       disagree: 0,
       comments: [],
       hotIssues: [],
-      likeGet:0,
-      likeGive:0,
-      userdata:null
+      likeGet: 0,
+      likeGive: 0,
+      userdata: null
     }
     this.handleIssue = this.handleIssue.bind(this);
     this.handleHotIssue = this.handleHotIssue.bind(this);
@@ -50,6 +50,22 @@ class App extends React.Component {
     this.setState({
       isLogin: !this.state.isLogin,
     })
+    axios.get("http://15.165.161.223:4000/main", {
+      // headers: {
+      //   Authorization: `bear ${this.state.userinfo}`,
+      //   credentials: 'include'
+      // }
+    })
+      .then(data => {
+        this.handleIssue(data.data);
+        this.props.history.push("/")
+      })
+      .catch(e => console.log(e));
+    axios.get(`http://15.165.161.223:4000/main/hotissue/`)
+      .then(data => {
+        this.handleHotIssue(data.data.hotIssues);
+      })
+      .catch(e => console.log("not found hotIssues"));
   }
 
   handleGetUserData() {
@@ -80,6 +96,7 @@ class App extends React.Component {
 
 
   handleSubmitLike(id, postId) {
+    if(!this.state.userinfo) return;
     axios
       .post('http://15.165.161.223:4000/main/like', {
         commentId: id,
@@ -99,7 +116,7 @@ class App extends React.Component {
   }
 
   handleAddComment(id, text) {
-    if(this.state.date!==today()) return;
+    if (this.state.date !== today()) return;
     axios
       .post("http://15.165.161.223:4000/main/comment",
         {
@@ -125,9 +142,9 @@ class App extends React.Component {
   handleIssue(data) {
     const newState = {
       voted: data.voted,
-      agree: (data.voted) ? data.agree : 0,
-      disagree: (data.voted) ? data.disagree : 0,
-      comments: (data.voted) ? data.comments : []
+      agree: (data.agree) ? data.agree : 0,
+      disagree: (data.disagree) ? data.disagree : 0,
+      comments: (data.comments) ? data.comments : []
     };
     if (data.postId) {
       newState.postId = data.postId;
@@ -176,9 +193,9 @@ class App extends React.Component {
       disagree: 0,
       comments: [],
       hotIssues: [],
-      likeGet:0,
-      likeGive:0,
-      userdata:null
+      likeGet: 0,
+      likeGive: 0,
+      userdata: null
     });
     this.props.history.push('/');
   }
