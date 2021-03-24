@@ -6,28 +6,33 @@ import { withRouter } from 'react-router-dom';
 import axios from "axios"
 
 class Nav extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
-    this.gotoMain = this.gotoMain.bind(this); 
+    this.gotoMain = this.gotoMain.bind(this);
     this.toMypage = this.toMypage.bind(this);
   }
-  gotoMain(){
+  gotoMain() {
     return this.props.history.push('/');
   }
-  toMypage(){
-    return this.props.history.push('/mypage')
+  toMypage() {
+    if (this.props.userinfo) {
+      return this.props.history.push('/mypage')
+    } else {
+      console.log("로그인이 필요합니다")
+    }
+
   }
 
 
-  render(){
+  render() {
     return (
       <div className="nav_var">
-        <div className="img"><img src="../debate.png" width="40px"height="40px"/></div>
+        <div className="img"><img src="../debate.png" width="40px" height="40px" /></div>
         <div className="Daily_Issue" onClick={this.gotoMain}>Daily Issue</div>
-        <div className="profile"onClick={this.props.toggleWriting}></div>
-        <div className="profile"onClick={this.props.handleGetUserData}></div>
-        <div className="like">👍0</div>
-        <div className="Sign_Out"onClick={this.props.handleLogout}>
+        <div className="profile" onClick={this.props.toggleWriting}></div>
+        <div className="profile" onClick={this.toMypage}></div>
+        <div className="like">👍{this.props.likeGet}/{this.props.likeGive}</div>
+        <div className="Sign_Out" onClick={this.props.handleLogout}>
           Sign out
           </div>
       </div>

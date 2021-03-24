@@ -10,6 +10,7 @@ function SideNav(props) {
   const firstWeek = today.clone().startOf('month').week();
   const lastWeek = today.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week();
   const handleCalenderClick=function(date){
+    if(date>today.format('YYYY-MM-DD')) return;
     props.handleDate(date);
     axios.get(`http://15.165.161.223:4000/main/${date}`,{      
       headers:{
@@ -22,13 +23,12 @@ function SideNav(props) {
     .catch(e=>console.log("not found dailyIssue"));
     axios.get(`http://15.165.161.223:4000/main/hotissue/${date}`)
     .then(data=>{
-      console.log(data.data.hotIssues);
       props.handleHotIssue(data.data.hotIssues);
     })
     .catch(e=>console.log("not found hotIssues"));
   };
   const handleRandomIssue=function(){
-    axios.get(`http://15.165.161.223:4000/main/small/`,{      
+    axios.get(`http://15.165.161.223:4000/main/small?date=${props.date}`,{      
       headers:{
         Authorization:`bear ${props.userinfo}`
       }
@@ -100,9 +100,9 @@ function SideNav(props) {
     <div className="Side_nav">
         <div className="side">
         <div className="control">
-          <button className="button" onClick={()=>{ setMoment(getMoment.clone().subtract(1, 'month')) }}>이전달</button>
+          <button className="button" onClick={()=>{ setMoment(getMoment.clone().subtract(1, 'month')) }}>⬅</button>
           <span>{today.format('YYYY / MM ')}</span>
-          <button className="button" onClick={()=>{ setMoment(getMoment.clone().add(1, 'month')) }} >다음달</button>
+          <button className="button" onClick={()=>{ setMoment(getMoment.clone().add(1, 'month')) }} >➡️</button>
         </div>
         <table>
           <tbody>
@@ -111,9 +111,9 @@ function SideNav(props) {
         </table>
     </div>
     <div>
-
+      <br></br>
     </div>
-    <div className="Hot_Issue" onClick={handleRandomIssue}>
+    <div className="RandomIssue" onClick={handleRandomIssue}>
       Go to Random issue
     </div>
     <div className="Hot_Issue">

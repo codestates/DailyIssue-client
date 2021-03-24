@@ -31,8 +31,9 @@ class App extends React.Component {
       disagree: 0,
       comments: [],
       hotIssues: [],
-      userdata: null,
-      like: null,
+      likeGet:0,
+      likeGive:0,
+      userdata:null
     }
     this.handleIssue = this.handleIssue.bind(this);
     this.handleHotIssue = this.handleHotIssue.bind(this);
@@ -42,6 +43,13 @@ class App extends React.Component {
     this.handleSubmitLike = this.handleSubmitLike.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.handleGetUserData = this.handleGetUserData.bind(this);
+    this.handleGuestLogin = this.handleGuestLogin.bind(this);
+  }
+
+  handleGuestLogin() {
+    this.setState({
+      isLogin: !this.state.isLogin,
+    })
   }
 
   handleGetUserData() {
@@ -52,18 +60,26 @@ class App extends React.Component {
       }
     })
       .then(data => {
-        console.log("data : ", data)
         this.setState({
           userdata: data.data.userData,
-          like: data.data.like,
-        })
-        this.props.history.push('/mypage')
-      })
+          likeGive: data.data.like,
+        });
+      });
+    axios.get("http://15.165.161.223:4000/main/like", {
+      headers: {
+        Authorization: `Bearer ${this.state.userinfo}`,
+        credentials: 'include'
+      }
+    })
+      .then(data => {
+        this.setState({
+          likeGet: data.data.like,
+        });
+      });
   }
 
 
   handleSubmitLike(id) {
-    console.log(id);
     axios
       .post('http://15.165.161.223:4000/main/like', {
         commentId: id
@@ -79,7 +95,7 @@ class App extends React.Component {
   }
 
   handleAddComment(id, text) {
-    console.log(id, text);
+    if(this.state.date!==today()) return;
     axios
       .post("http://15.165.161.223:4000/main/comment",
         {
@@ -94,7 +110,6 @@ class App extends React.Component {
         }
       )
       .then(data => {
-        console.log(data);
         this.setState({ comments: data.data.comments })
       });
   }
@@ -104,7 +119,6 @@ class App extends React.Component {
   }
 
   handleIssue(data) {
-    console.log(data);
     const newState = {
       voted: data.voted,
       agree: (data.voted) ? data.agree : 0,
@@ -145,27 +159,40 @@ class App extends React.Component {
       .catch(e => console.log("not found hotIssues"));
   }
   handleLogout() {
-    this.setState({ isLogin: true, userinfo: null });
+    this.setState({
+      isLogin: true,
+      isWriting: false,
+      userinfo: null,
+      arrCommentRank: [],
+      date: today(),
+      postId: 0,
+      title: null,
+      voted: false,
+      agree: 0,
+      disagree: 0,
+      comments: [],
+      hotIssues: [],
+      likeGet:0,
+      likeGive:0,
+      userdata:null
+    });
     this.props.history.push('/');
-    console.log("로그아웃")
   }
 
   render() {
     const { isLogin, userinfo } = this.state;
-    console.log("App.state : ", this.state);
-    console.log("App.props : ", this.props);
-
     return (
       <div>
         <Switch>
           <Route render={() => {
             if (!isLogin) {
               return (
-                <div>
+                <div className="App">
                   <Nav userinfo={this.state.userinfo}
                     handleLogout={this.handleLogout}
                     toggleWriting={() => this.setState({ isWriting: !this.state.isWriting })}
-                    handleGetUserData={this.handleGetUserData}
+                    likeGet={this.state.likeGet}
+                    likeGive={this.state.likeGive}
                   />
                   <div className="Components">
                     <SideNav hotIssues={this.state.hotIssues}
@@ -176,6 +203,7 @@ class App extends React.Component {
                       userinfo={this.state.userinfo}
                       toggleWriting={() => this.setState({ isWriting: !this.state.isWriting })} />
                     <Contents handleIssue={this.handleIssue}
+                      date={this.state.date}
                       postId={this.state.postId}
                       title={this.state.title}
                       voted={this.state.voted}
@@ -189,14 +217,17 @@ class App extends React.Component {
                       isWriting={this.state.isWriting}
                       toggleWriting={() => this.setState({ isWriting: !this.state.isWriting })}
                       userdata={this.state.userdata}
-                      like={this.state.like}
+                      likeGive={this.state.likeGive}
+                      likeGet={this.state.likeGet}
+                      handleGetUserData={this.handleGetUserData}
+                      handleLogout={this.handleLogout}
                     />
                   </div>
                 </div>)
             }
             else {
               return (
-                <Login handleResponseSuccess={this.handleResponseSuccess} />
+                <Login handleResponseSuccess={this.handleResponseSuccess} handleGuestLogin={this.handleGuestLogin} />
               )
             }
           }

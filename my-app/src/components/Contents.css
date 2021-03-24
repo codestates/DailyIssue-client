@@ -1,13 +1,13 @@
 .Contents {
-  display: flex;
-  flex: auto;
-  flex-wrap: nowrap;
-  padding: 16px;
-  margin: 15px;
-  width: auto;
-  height: 595px;
-  justify-content: space-evenly;
-  background-color: rgba(164, 177, 182, 0.431);
-  border-radius: 25px;
-  flex-direction: column;
+	display: flex;
+	flex: auto;
+	flex-wrap: nowrap;
+	padding: 16px;
+	margin: 15px;
+	width: auto;
+	height: 87vh;
+	justify-content: space-evenly;
+	background-color: rgba(164, 177, 182, 0.431);
+	border-radius: 25px;
+	flex-direction: column;
 }
