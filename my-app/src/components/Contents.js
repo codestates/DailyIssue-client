@@ -5,7 +5,7 @@ import Mypage from '../pages/Mypage'
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import Comments from './Comments'
 import AddSmallIssue from './AddSmallIssue'
-
+import moment from 'moment'
 
 function contents(props) {
   return (
@@ -30,7 +30,7 @@ function contents(props) {
                     handleIssue={props.handleIssue}
                     />
                     {
-                      props.voted ? 
+                      props.voted||(props.date!==moment().format('YYYY-MM-DD')) ? 
                       <Comments 
                         date={props.date}
                         comments={props.comments} 
@@ -39,7 +39,7 @@ function contents(props) {
                         postId={props.postId}/>
                       :
                       null
-                    }
+                  }
                 </>
                 : <AddSmallIssue
                   postId={props.postId}
@@ -52,12 +52,14 @@ function contents(props) {
         <Route
           exact
           path='/mypage'
-          render={() => <Mypage 
-                          userinfo={props.userinfo} 
-                          userdata={props.userdata} 
-                          likeGet={props.likeGet} 
-                          likeGive={props.likeGive} 
-                          handleGetUserData={props.handleGetUserData}/>}
+          render={() => <Mypage
+            userinfo={props.userinfo}
+            userdata={props.userdata}
+            likeGet={props.likeGet}
+            likeGive={props.likeGive}
+            handleGetUserData={props.handleGetUserData}
+            handleLogout={props.handleLogout}
+          />}
         />
       </Switch>
     </div>

@@ -43,6 +43,13 @@ class App extends React.Component {
     this.handleSubmitLike = this.handleSubmitLike.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.handleGetUserData = this.handleGetUserData.bind(this);
+    this.handleGuestLogin = this.handleGuestLogin.bind(this);
+  }
+
+  handleGuestLogin() {
+    this.setState({
+      isLogin: !this.state.isLogin,
+    })
   }
 
   handleGetUserData() {
@@ -52,23 +59,23 @@ class App extends React.Component {
         credentials: 'include'
       }
     })
-    .then(data => {
-      this.setState({
-        userdata: data.data.userData,
-        likeGive: data.data.like,
+      .then(data => {
+        this.setState({
+          userdata: data.data.userData,
+          likeGive: data.data.like,
+        });
       });
-    });
-    axios.get("http://15.165.161.223:4000/main/like",{
+    axios.get("http://15.165.161.223:4000/main/like", {
       headers: {
         Authorization: `Bearer ${this.state.userinfo}`,
         credentials: 'include'
       }
     })
-    .then(data => {
-      this.setState({
-        likeGet: data.data.like,
+      .then(data => {
+        this.setState({
+          likeGet: data.data.like,
+        });
       });
-    });
   }
 
 
@@ -180,7 +187,7 @@ class App extends React.Component {
           <Route render={() => {
             if (!isLogin) {
               return (
-                <div>
+                <div className="App">
                   <Nav userinfo={this.state.userinfo}
                     handleLogout={this.handleLogout}
                     toggleWriting={() => this.setState({ isWriting: !this.state.isWriting })}
@@ -213,13 +220,14 @@ class App extends React.Component {
                       likeGive={this.state.likeGive}
                       likeGet={this.state.likeGet}
                       handleGetUserData={this.handleGetUserData}
+                      handleLogout={this.handleLogout}
                     />
                   </div>
                 </div>)
             }
             else {
               return (
-                <Login handleResponseSuccess={this.handleResponseSuccess} />
+                <Login handleResponseSuccess={this.handleResponseSuccess} handleGuestLogin={this.handleGuestLogin} />
               )
             }
           }
