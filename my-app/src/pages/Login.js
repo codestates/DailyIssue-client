@@ -25,7 +25,6 @@ class LoginPage extends React.Component {
     }
 
     handleInputValue = (key) => (e) => {
-        console.log(e.target);
         this.setState({ [key]: e.target.value });
     };
 
