@@ -168,7 +168,7 @@ class App extends React.Component {
           <Route render={() => {
             if (!isLogin) {
               return (
-                <div>
+                <div className="App">
                   <Nav userinfo={this.state.userinfo}
                     handleLogout={this.handleLogout}
                     toggleWriting={() => this.setState({ isWriting: !this.state.isWriting })}
