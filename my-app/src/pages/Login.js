@@ -24,8 +24,15 @@ class LoginPage extends React.Component {
         // this.handleGuestLogin = this.handleGuestLogin.bind(this);
     }
 
+    handleKeyPress = (e) => {
+        if (e.key === "Enter") {
+            this.handleLogin();
+        }
+    }
+
     handleInputValue = (key) => (e) => {
         this.setState({ [key]: e.target.value });
+
     };
 
     handleSignUpModalOn = (e) => {
@@ -81,7 +88,7 @@ class LoginPage extends React.Component {
                             </div>
                             <div id="input-box">
                                 <input type="text" placeholder="✉️ UserID" onChange={this.handleInputValue("userId")} />
-                                <input id="input-password" type="password" placeholder="🔑 Password" onChange={this.handleInputValue("password")} />
+                                <input id="input-password" type="password" placeholder="🔑 Password" onChange={this.handleInputValue("password")} onKeyPress={this.handleKeyPress} />
                                 <button id="login-btn" onClick={this.handleLogin}>Login</button>
                             </div>
                             {this.state.errorMessage ?
