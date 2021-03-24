@@ -41,7 +41,7 @@ class Mypage extends React.Component {
                 <label htmlFor="">Nickname</label>
               </li>
               <li id="mypage-nickname-input">
-                <input type="text" placeholder={(this.props.userdata) ? this.props.userdata.nickname : "loading"} />
+                <input type="text" value={(this.props.userdata) ? this.props.userdata.nickname : "loading"} />
                 {/* {this.props.userdata.nickname} */}
               </li>
               <li id="mypage-email">

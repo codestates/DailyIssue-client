@@ -30,7 +30,11 @@ class App extends React.Component {
       agree: 0,
       disagree: 0,
       comments: [],
-      hotIssues: []
+      hotIssues: [],
+      userdata: "",
+      likeGive: 0,
+      likeGet: 0,
+
     }
     this.handleIssue = this.handleIssue.bind(this);
     this.handleHotIssue = this.handleHotIssue.bind(this);
@@ -167,7 +171,10 @@ class App extends React.Component {
       agree: 0,
       disagree: 0,
       comments: [],
-      hotIssues: []
+      hotIssues: [],
+      userdata: "",
+      likeGive: 0,
+      likeGet: 0,
     });
     this.props.history.push('/');
   }
