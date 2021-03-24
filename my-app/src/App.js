@@ -108,7 +108,9 @@ class App extends React.Component {
           }
         })
       // 새로운 댓글 리스트를 반환할 예정
-      .then(console.log);
+      .then(x=>{
+        console.log(x.data)
+      });
   }
 
   handleAddComment(id, text) {
