@@ -21,7 +21,11 @@
   display: flex;
   flex-direction: column;
 	padding-top: 20px;
-	font-size: 10px;
+
+	font-size: 1vh;
+	display: flex;
+	flex-direction: column;
+
 	align-items: center;
 	justify-content: center;
 }
@@ -39,7 +43,7 @@
 .side table {
 	display: flex;
 	flex-direction: row;
-	font-size: 20px;
+	font-size: 4vh;
 	flex-wrap: nowrap;
 	align-items: center;
 	justify-content: center;
@@ -47,8 +51,8 @@
 .side table {
 	display: flex;
 	justify-content: center;
-	width: 10px;
-	height: 10px;
+	width: 5vh;
+	height: 5vh;
 }
 .side table tbody {
   display: flex;
@@ -59,10 +63,12 @@
   flex-direction: row;
 }
 .side td {
-  display: flex;
-  border: 1px solid gray;
-  width: 30px;
-  height: 30px;
+
+	display: flex;
+	border: 1px solid gray;
+	width: 5vh;
+	height: 5vh;
+
 }
 .side td span {
   display: flex;
@@ -71,7 +77,8 @@
 }
 
 .RandomIssue {
-  font-size: 30px;
+
+	font-size: 4vh;
   background-color: #fed049;
   height: 80px;
   margin: 20px;
@@ -81,6 +88,7 @@
   border-radius: 10px;
   color: whitesmoke;
   transition: all 0.1s linear;
+
 }
 
 .RandomIssue:hover {
