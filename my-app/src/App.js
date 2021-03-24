@@ -22,6 +22,7 @@ class App extends React.Component {
       isLogin: true,
       isWriting: false,
       userinfo: null,
+      arrCommentRank: [],
       date: today(),
       postId: 0,
       title: null,
@@ -78,7 +79,6 @@ class App extends React.Component {
 
   handleAddComment(id, text) {
     console.log(id, text);
-    // 댓글 추가 했을 때, 댓글 내용이 null로 db에 저장되는 문제..
     axios
       .post("http://15.165.161.223:4000/main/comment",
         {

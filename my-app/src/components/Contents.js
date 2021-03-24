@@ -19,7 +19,7 @@ function contents(props) {
             return (
               !props.isWriting
                 ? <>
-                  <Main
+                  <Main 
                     postId={props.postId}
                     title={props.title}
                     voted={props.voted}
@@ -28,13 +28,13 @@ function contents(props) {
                     hotIssues={props.hotIssues}
                     userinfo={props.userinfo}
                     handleIssue={props.handleIssue}
-                  />
-                  {
-                    props.voted ?
-                      <Comments comments={props.comments} handleAddComment={props.handleAddComment} handleSubmitLike={props.handleSubmitLike} />
+                    />
+                    {
+                      props.voted ? 
+                      <Comments comments={props.comments} handleAddComment={props.handleAddComment} handleSubmitLike={props.handleSubmitLike} postId={props.postId}/>
                       :
                       null
-                  }
+                    }
                 </>
                 : <AddSmallIssue
                   postId={props.postId}

@@ -22,6 +22,12 @@ class Main extends React.Component {
     })
   }
   render(){
+    const agreeBarStyle = {
+      width: `${Math.round((this.props.agree / (this.props.agree + this.props.disagree)) * 100)}%`,
+    }
+    const disagreeBarStyle = {
+      width: `${Math.round((this.props.disagree / (this.props.agree + this.props.disagree)) * 100)}%`,
+    }
     return (
       <div>
         <h1 className="title">{this.props.title}</h1>
@@ -39,8 +45,8 @@ class Main extends React.Component {
         : 
         <>
           <div className="yes-no">
-            <div className="yes">{`${Math.round((this.props.agree / (this.props.agree + this.props.disagree)) * 100)}%`}</div>
-            <div className="no">{`${Math.round((this.props.disagree / (this.props.agree + this.props.disagree)) * 100)}%`}</div>
+            <div className="yes" style={agreeBarStyle}>{`${Math.round((this.props.agree / (this.props.agree + this.props.disagree)) * 100)}%`}</div>
+            <div className="no" style={disagreeBarStyle}>{`${Math.round((this.props.disagree / (this.props.agree + this.props.disagree)) * 100)}%`}</div>
           </div>
         </>
         }

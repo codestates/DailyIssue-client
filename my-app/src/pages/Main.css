@@ -30,7 +30,6 @@
   background-color: #a1cae2;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
-  flex: 1 0 auto;
   align-items: center;
   justify-content: center;
   font-weight: bolder;
@@ -41,7 +40,6 @@
 .no {
   display: flex;
   background-color: #e84545;
-  flex: 1 0 auto;
   border-top-right-radius: 25px;
   border-bottom-right-radius: 25px;
   align-items: center;

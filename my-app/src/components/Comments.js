@@ -35,7 +35,7 @@ class Comments extends React.Component {
                         return <Comment key={i} comment={comment.text} isAgree={comment.agree} handleSubmitLike={this.props.handleSubmitLike.bind(null, comment.commentId)}/>
                     })}
                 </ul>
-                <AddComment handleAddComment={this.props.handleAddComment} isBtnFalse={() => {this.setState({isBtn: false})}}/>
+                <AddComment handleAddComment={this.props.handleAddComment} isBtnFalse={() => {this.setState({isBtn: false})}} postId={this.props.postId}/>
                 </>
             }
             {/* <AddComment/> */}
