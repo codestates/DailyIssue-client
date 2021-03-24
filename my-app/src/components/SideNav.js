@@ -10,6 +10,7 @@ function SideNav(props) {
   const firstWeek = today.clone().startOf('month').week();
   const lastWeek = today.clone().endOf('month').week() === 1 ? 53 : today.clone().endOf('month').week();
   const handleCalenderClick=function(date){
+    if(date>today.format('YYYY-MM-DD')) return;
     props.handleDate(date);
     axios.get(`http://15.165.161.223:4000/main/${date}`,{      
       headers:{
@@ -22,13 +23,12 @@ function SideNav(props) {
     .catch(e=>console.log("not found dailyIssue"));
     axios.get(`http://15.165.161.223:4000/main/hotissue/${date}`)
     .then(data=>{
-      console.log(data.data.hotIssues);
       props.handleHotIssue(data.data.hotIssues);
     })
     .catch(e=>console.log("not found hotIssues"));
   };
   const handleRandomIssue=function(){
-    axios.get(`http://15.165.161.223:4000/main/small/`,{      
+    axios.get(`http://15.165.161.223:4000/main/small?date=${props.date}`,{      
       headers:{
         Authorization:`bear ${props.userinfo}`
       }

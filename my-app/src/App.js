@@ -30,7 +30,11 @@ class App extends React.Component {
       agree: 0,
       disagree: 0,
       comments: [],
-      hotIssues: []
+      hotIssues: [],
+      userdata: "",
+      likeGive: 0,
+      likeGet: 0,
+
     }
     this.handleIssue = this.handleIssue.bind(this);
     this.handleHotIssue = this.handleHotIssue.bind(this);
@@ -40,6 +44,13 @@ class App extends React.Component {
     this.handleSubmitLike = this.handleSubmitLike.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.handleGetUserData = this.handleGetUserData.bind(this);
+    this.handleGuestLogin = this.handleGuestLogin.bind(this);
+  }
+
+  handleGuestLogin() {
+    this.setState({
+      isLogin: !this.state.isLogin,
+    })
   }
 
   handleGetUserData() {
@@ -49,28 +60,27 @@ class App extends React.Component {
         credentials: 'include'
       }
     })
-    .then(data => {
-      this.setState({
-        userdata: data.data.userData,
-        likeGive: data.data.like,
+      .then(data => {
+        this.setState({
+          userdata: data.data.userData,
+          likeGive: data.data.like,
+        });
       });
-    });
-    axios.get("http://15.165.161.223:4000/main/like",{
+    axios.get("http://15.165.161.223:4000/main/like", {
       headers: {
         Authorization: `Bearer ${this.state.userinfo}`,
         credentials: 'include'
       }
     })
-    .then(data => {
-      this.setState({
-        likeGet: data.data.like,
+      .then(data => {
+        this.setState({
+          likeGet: data.data.like,
+        });
       });
-    });
   }
 
 
   handleSubmitLike(id) {
-    console.log(id);
     axios
       .post('http://15.165.161.223:4000/main/like', {
         commentId: id
@@ -86,7 +96,6 @@ class App extends React.Component {
   }
 
   handleAddComment(id, text) {
-    console.log(id, text);
     axios
       .post("http://15.165.161.223:4000/main/comment",
         {
@@ -101,7 +110,6 @@ class App extends React.Component {
         }
       )
       .then(data => {
-        console.log(data);
         this.setState({ comments: data.data.comments })
       });
   }
@@ -111,7 +119,6 @@ class App extends React.Component {
   }
 
   handleIssue(data) {
-    console.log(data);
     const newState = {
       voted: data.voted,
       agree: (data.voted) ? data.agree : 0,
@@ -152,16 +159,28 @@ class App extends React.Component {
       .catch(e => console.log("not found hotIssues"));
   }
   handleLogout() {
-    this.setState({ isLogin: true, userinfo: null });
+    this.setState({
+      isLogin: true,
+      isWriting: false,
+      userinfo: null,
+      arrCommentRank: [],
+      date: today(),
+      postId: 0,
+      title: null,
+      voted: false,
+      agree: 0,
+      disagree: 0,
+      comments: [],
+      hotIssues: [],
+      userdata: "",
+      likeGive: 0,
+      likeGet: 0,
+    });
     this.props.history.push('/');
-    console.log("로그아웃")
   }
 
   render() {
     const { isLogin, userinfo } = this.state;
-    console.log("App.state : ", this.state);
-    console.log("App.props : ", this.props);
-
     return (
       <div>
         <Switch>
@@ -200,13 +219,14 @@ class App extends React.Component {
                       likeGive={this.state.likeGive}
                       likeGet={this.state.likeGet}
                       handleGetUserData={this.handleGetUserData}
+                      handleLogout={this.handleLogout}
                     />
                   </div>
                 </div>)
             }
             else {
               return (
-                <Login handleResponseSuccess={this.handleResponseSuccess} />
+                <Login handleResponseSuccess={this.handleResponseSuccess} handleGuestLogin={this.handleGuestLogin} />
               )
             }
           }

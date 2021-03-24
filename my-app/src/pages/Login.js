@@ -68,15 +68,6 @@ class LoginPage extends React.Component {
             });
     };
 
-
-
-    // handleResponseSuccess(token) {
-    //     this.setState({ isLogin: false, userinfo: token })
-    //     this.props.history.push("/main")
-    //     console.log("asdf");
-    // }
-
-
     render() {
         return (
             <div className="Login">
