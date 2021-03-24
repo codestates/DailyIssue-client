@@ -30,9 +30,7 @@ class App extends React.Component {
       agree: 0,
       disagree: 0,
       comments: [],
-      hotIssues: [],
-      userdata: null,
-      like: null,
+      hotIssues: []
     }
     this.handleIssue = this.handleIssue.bind(this);
     this.handleHotIssue = this.handleHotIssue.bind(this);
@@ -51,13 +49,23 @@ class App extends React.Component {
         credentials: 'include'
       }
     })
-      .then(data => {
-        console.log("data : ", data)
-        this.setState({
-          userdata: data.data.userData,
-          like: data.data.like,
-        })
-      })
+    .then(data => {
+      this.setState({
+        userdata: data.data.userData,
+        likeGive: data.data.like,
+      });
+    });
+    axios.get("http://15.165.161.223:4000/main/like",{
+      headers: {
+        Authorization: `Bearer ${this.state.userinfo}`,
+        credentials: 'include'
+      }
+    })
+    .then(data => {
+      this.setState({
+        likeGet: data.data.like,
+      });
+    });
   }
 
 
@@ -164,6 +172,8 @@ class App extends React.Component {
                   <Nav userinfo={this.state.userinfo}
                     handleLogout={this.handleLogout}
                     toggleWriting={() => this.setState({ isWriting: !this.state.isWriting })}
+                    likeGet={this.state.likeGet}
+                    likeGive={this.state.likeGive}
                   />
                   <div className="Components">
                     <SideNav hotIssues={this.state.hotIssues}
@@ -187,7 +197,9 @@ class App extends React.Component {
                       isWriting={this.state.isWriting}
                       toggleWriting={() => this.setState({ isWriting: !this.state.isWriting })}
                       userdata={this.state.userdata}
-                      like={this.state.like}
+                      likeGive={this.state.likeGive}
+                      likeGet={this.state.likeGet}
+                      handleGetUserData={this.handleGetUserData}
                     />
                   </div>
                 </div>)
