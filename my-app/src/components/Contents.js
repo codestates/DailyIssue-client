@@ -5,7 +5,7 @@ import Mypage from '../pages/Mypage'
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import Comments from './Comments'
 import AddSmallIssue from './AddSmallIssue'
-
+import moment from 'moment'
 
 function contents(props) {
   return (
@@ -18,7 +18,8 @@ function contents(props) {
             return (
               !props.isWriting
                 ? <>
-                  <Main
+                  <Main 
+                    date={props.date}
                     postId={props.postId}
                     title={props.title}
                     voted={props.voted}
@@ -27,14 +28,15 @@ function contents(props) {
                     hotIssues={props.hotIssues}
                     userinfo={props.userinfo}
                     handleIssue={props.handleIssue}
-                  />
-                  {
-                    props.voted ?
-                      <Comments
-                        comments={props.comments}
-                        handleAddComment={props.handleAddComment}
-                        handleSubmitLike={props.handleSubmitLike}
-                        postId={props.postId} />
+                    />
+                    {
+                      props.voted||(props.date!==moment().format('YYYY-MM-DD')) ? 
+                      <Comments 
+                        date={props.date}
+                        comments={props.comments} 
+                        handleAddComment={props.handleAddComment} 
+                        handleSubmitLike={props.handleSubmitLike} 
+                        postId={props.postId}/>
                       :
                       null
                   }

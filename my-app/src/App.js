@@ -31,10 +31,9 @@ class App extends React.Component {
       disagree: 0,
       comments: [],
       hotIssues: [],
-      userdata: "",
-      likeGive: 0,
-      likeGet: 0,
-
+      likeGet:0,
+      likeGive:0,
+      userdata:null
     }
     this.handleIssue = this.handleIssue.bind(this);
     this.handleHotIssue = this.handleHotIssue.bind(this);
@@ -96,6 +95,7 @@ class App extends React.Component {
   }
 
   handleAddComment(id, text) {
+    if(this.state.date!==today()) return;
     axios
       .post("http://15.165.161.223:4000/main/comment",
         {
@@ -172,9 +172,9 @@ class App extends React.Component {
       disagree: 0,
       comments: [],
       hotIssues: [],
-      userdata: "",
-      likeGive: 0,
-      likeGet: 0,
+      likeGet:0,
+      likeGive:0,
+      userdata:null
     });
     this.props.history.push('/');
   }
@@ -203,6 +203,7 @@ class App extends React.Component {
                       userinfo={this.state.userinfo}
                       toggleWriting={() => this.setState({ isWriting: !this.state.isWriting })} />
                     <Contents handleIssue={this.handleIssue}
+                      date={this.state.date}
                       postId={this.state.postId}
                       title={this.state.title}
                       voted={this.state.voted}
