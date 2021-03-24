@@ -9,6 +9,7 @@ class Main extends React.Component {
     this.vote=this.vote.bind(this);
   }
   vote(vote){
+    if(this.props.date!==moment().format('YYYY-MM-DD')) return;
     axios.post("http://15.165.161.223:4000/main/vote",{
       vote:vote,
       postId:this.props.postId,
