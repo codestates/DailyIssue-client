@@ -117,9 +117,6 @@ function SideNav(props) {
       <div>
         <br></br>
       </div>
-      <div className="RandomIssue" onClick={handleRandomIssue}>
-        Go to Random issue
-    </div>
     <div>
       <br></br>
     </div>
