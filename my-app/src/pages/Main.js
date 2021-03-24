@@ -1,7 +1,6 @@
 import React from "react";
 import "./Main.css";
 import axios from "axios";
-import moment from 'moment';
 import Alert from './Alert';
 
 class Main extends React.Component {
@@ -13,6 +12,7 @@ class Main extends React.Component {
     this.vote = this.vote.bind(this);
     this.handleCloseBtn = this.handleCloseBtn.bind(this);
   }
+  
   vote(vote) {
     if (this.props.userinfo) {
       axios.post("http://15.165.161.223:4000/main/vote", {
