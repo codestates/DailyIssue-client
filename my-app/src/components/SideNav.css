@@ -11,14 +11,12 @@
 }
 
 .side {
-	height: 100px;
-	width: 300px;
-	padding: 15px;
+	padding-top: 20px;
 	font-size: 10px;
 	display: flex;
 	flex-direction: column;
-	align-items: left;
-	justify-content: flex-end;
+	align-items: center;
+	justify-content: center;
 }
 .side:hover {
 	cursor: pointer;
@@ -30,12 +28,13 @@
 	font-size: 20px;
 	flex-wrap: nowrap;
 	align-items: center;
+	justify-content: center;
 }
 .side table {
 	display: flex;
+	justify-content: center;
 	width: 10px;
 	height: 10px;
-	padding-left: 30px;
 }
 .side table tbody {
 	display: flex;
@@ -78,4 +77,5 @@ li:hover {
 }
 .li {
 	padding-left: 20px;
+	margin: 10px;
 }
