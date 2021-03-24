@@ -1,6 +1,7 @@
 import React from "react";
 import "./Main.css";
 import axios from "axios";
+import moment from 'moment';
 
 class Main extends React.Component {
   constructor(props){
@@ -8,6 +9,7 @@ class Main extends React.Component {
     this.vote=this.vote.bind(this);
   }
   vote(vote){
+    if(this.props.date!==moment().format('YYYY-MM-DD')) return;
     axios.post("http://15.165.161.223:4000/main/vote",{
       vote:vote,
       postId:this.props.postId,
@@ -32,7 +34,8 @@ class Main extends React.Component {
       <div>
         <h1 className="title">{this.props.title}</h1>
         <div className="icon">
-        {!this.props.voted // voted가 0일 때 나옴...
+        {!(this.props.voted||(this.props.date!==moment().format('YYYY-MM-DD')))
+        || this.props.agree===0 && this.props.disagree===0  // voted가 0일 때 나옴...
         ?(<>
           <div className="yes" onClick={()=>this.vote(1)}>
             <img src="../check-mark.png"width="200px" height="200px"/>

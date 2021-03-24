@@ -3,6 +3,7 @@ import "./Comments.css";
 import Comment from './Comment';
 import AddComment from './AddComment';
 import HotComment from './HotComment';
+import moment from 'moment';
 
 class Comments extends React.Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class Comments extends React.Component {
         }
     }
     render(){
+        console.log(this.props.comments);
     return (
         <>
         <HotComment comments={this.props.comments}/>
@@ -25,7 +27,10 @@ class Comments extends React.Component {
 
                     })}
                 </ul>
-                <button id="btn-addComment" onClick={() => {this.setState({isBtn: !this.state.isBtn})}}>새 덧글 생성하기</button>
+                {(this.props.date===moment().format('YYYY-MM-DD'))
+                ?<button id="btn-addComment" onClick={() => {this.setState({isBtn: !this.state.isBtn})}}>새 덧글 생성하기</button>
+                :null
+                }
                 </>
                 :
                 <>
