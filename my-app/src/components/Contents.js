@@ -19,6 +19,7 @@ function contents(props) {
               !props.isWriting
                 ? <>
                   <Main 
+                    date={props.date}
                     postId={props.postId}
                     title={props.title}
                     voted={props.voted}
@@ -31,6 +32,7 @@ function contents(props) {
                     {
                       props.voted ? 
                       <Comments 
+                        date={props.date}
                         comments={props.comments} 
                         handleAddComment={props.handleAddComment} 
                         handleSubmitLike={props.handleSubmitLike} 
