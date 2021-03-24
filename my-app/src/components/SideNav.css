@@ -47,8 +47,8 @@
 .side td {
 	display: flex;
 	border: 1px solid gray;
-	width: 30px;
-	height: 30px;
+	width: 5vh;
+	height: 5vh;
 }
 .side td span {
 	display: flex;
