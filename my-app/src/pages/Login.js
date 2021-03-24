@@ -70,7 +70,7 @@ class LoginPage extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="Login">
                 <br></br>
                 <div id="login-wrap">
                     <div id="right-side">

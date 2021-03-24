@@ -100,9 +100,9 @@ function SideNav(props) {
     <div className="Side_nav">
         <div className="side">
         <div className="control">
-          <button className="button" onClick={()=>{ setMoment(getMoment.clone().subtract(1, 'month')) }}>이전달</button>
+          <button className="button" onClick={()=>{ setMoment(getMoment.clone().subtract(1, 'month')) }}>⬅</button>
           <span>{today.format('YYYY / MM ')}</span>
-          <button className="button" onClick={()=>{ setMoment(getMoment.clone().add(1, 'month')) }} >다음달</button>
+          <button className="button" onClick={()=>{ setMoment(getMoment.clone().add(1, 'month')) }} >➡️</button>
         </div>
         <table>
           <tbody>
@@ -111,9 +111,9 @@ function SideNav(props) {
         </table>
     </div>
     <div>
-
+      <br></br>
     </div>
-    <div className="Hot_Issue" onClick={handleRandomIssue}>
+    <div className="RandomIssue" onClick={handleRandomIssue}>
       Go to Random issue
     </div>
     <div className="Hot_Issue">
