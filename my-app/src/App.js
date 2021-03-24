@@ -31,9 +31,9 @@ class App extends React.Component {
       disagree: 0,
       comments: [],
       hotIssues: [],
-      likeGet:0,
-      likeGive:0,
-      userdata:null
+      likeGet: 0,
+      likeGive: 0,
+      userdata: null
     }
     this.handleIssue = this.handleIssue.bind(this);
     this.handleHotIssue = this.handleHotIssue.bind(this);
@@ -50,6 +50,22 @@ class App extends React.Component {
     this.setState({
       isLogin: !this.state.isLogin,
     })
+    axios.get("http://15.165.161.223:4000/main", {
+      // headers: {
+      //   Authorization: `bear ${this.state.userinfo}`,
+      //   credentials: 'include'
+      // }
+    })
+      .then(data => {
+        this.handleIssue(data.data);
+        this.props.history.push("/")
+      })
+      .catch(e => console.log(e));
+    axios.get(`http://15.165.161.223:4000/main/hotissue/`)
+      .then(data => {
+        this.handleHotIssue(data.data.hotIssues);
+      })
+      .catch(e => console.log("not found hotIssues"));
   }
 
   handleGetUserData() {
@@ -95,7 +111,7 @@ class App extends React.Component {
   }
 
   handleAddComment(id, text) {
-    if(this.state.date!==today()) return;
+    if (this.state.date !== today()) return;
     axios
       .post("http://15.165.161.223:4000/main/comment",
         {
@@ -172,9 +188,9 @@ class App extends React.Component {
       disagree: 0,
       comments: [],
       hotIssues: [],
-      likeGet:0,
-      likeGive:0,
-      userdata:null
+      likeGet: 0,
+      likeGive: 0,
+      userdata: null
     });
     this.props.history.push('/');
   }
