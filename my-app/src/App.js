@@ -137,9 +137,9 @@ class App extends React.Component {
   handleIssue(data) {
     const newState = {
       voted: data.voted,
-      agree: (data.voted) ? data.agree : 0,
-      disagree: (data.voted) ? data.disagree : 0,
-      comments: (data.voted) ? data.comments : []
+      agree: (data.voted||this.state.date!==today()) ? data.agree : 0,
+      disagree: (data.voted||this.state.date!==today()) ? data.disagree : 0,
+      comments: (data.voted||this.state.date!==today()) ? data.comments : []
     };
     if (data.postId) {
       newState.postId = data.postId;

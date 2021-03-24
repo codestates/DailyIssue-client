@@ -18,6 +18,7 @@ function SideNav(props) {
       }
     } : undefined)
       .then(data => {
+        console.log(data.data);
         props.handleIssue(data.data);
       })
       .catch(e => console.log("not found dailyIssue"));
