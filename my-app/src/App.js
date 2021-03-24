@@ -79,10 +79,11 @@ class App extends React.Component {
   }
 
 
-  handleSubmitLike(id) {
+  handleSubmitLike(id, postId) {
     axios
       .post('http://15.165.161.223:4000/main/like', {
-        commentId: id
+        commentId: id,
+        postId: postId
       },
         {
           headers: {
@@ -91,7 +92,10 @@ class App extends React.Component {
           }
         })
       // 새로운 댓글 리스트를 반환할 예정
-      .then(console.log);
+      .then(data=>{
+        console.log(data.data);
+        this.setState({comments: data.data.comments});
+      });
   }
 
   handleAddComment(id, text) {

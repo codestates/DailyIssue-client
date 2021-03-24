@@ -22,7 +22,7 @@ class Comments extends React.Component {
                 <>
                 <ul className="root-comments">
                     {this.props.comments.map((comment,i)=>{
-                        return <Comment key={i} comment={comment.text} isAgree={comment.agree} handleSubmitLike={this.props.handleSubmitLike.bind(null, comment.commentId)}/>
+                        return <Comment key={i} like={comment.like} comment={comment.text} isAgree={comment.agree} handleSubmitLike={this.props.handleSubmitLike.bind(null, comment.commentId, this.props.postId)}/>
 
                     })}
                 </ul>
@@ -35,8 +35,7 @@ class Comments extends React.Component {
                 <>
                 <ul className="root-comments">
                     {this.props.comments.map((comment,i)=>{
-                        console.log(comment.commentId);
-                        return <Comment key={i} comment={comment.text} isAgree={comment.agree} handleSubmitLike={this.props.handleSubmitLike.bind(null, comment.commentId)}/>
+                        return <Comment key={i} like={comment.like} comment={comment.text} isAgree={comment.agree} handleSubmitLike={this.props.handleSubmitLike.bind(null, comment.commentId, this.props.postId)}/>
                     })}
                 </ul>
                 <AddComment handleAddComment={this.props.handleAddComment} isBtnFalse={() => {this.setState({isBtn: false})}} postId={this.props.postId}/>
