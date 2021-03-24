@@ -113,12 +113,7 @@ function SideNav(props) {
             {calendarArr()}
           </tbody>
         </table>
-      </div>
-      <div>
-        <br></br>
-      </div>
-    <div>
-      <br></br>
+
     </div>
     <div className="Hot_Issue">
         <div className="HOT">HOT ISSUE</div>
@@ -129,7 +124,6 @@ function SideNav(props) {
           <div>Random Issue</div>
         </div>
     </div>
-    <br></br>
     </div>
 
   );
