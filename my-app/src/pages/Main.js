@@ -2,6 +2,7 @@ import React from "react";
 import "./Main.css";
 import axios from "axios";
 import Alert from './Alert';
+import moment from "moment";
 
 class Main extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class Main extends React.Component {
   }
   
   vote(vote) {
+    if(this.props.date!==moment().format("YYYY-MM-DD")) return;
     if (this.props.userinfo) {
       axios.post("http://15.165.161.223:4000/main/vote", {
         vote: vote,
@@ -27,12 +29,11 @@ class Main extends React.Component {
         .then(resp => {
           this.props.handleIssue(resp.data);
         })
-    } else {
-      console.log('로그인이 필요합니다')
+    } 
+    else {
       this.setState({
         isOpen: true,
       });
-      console.log("state 변환완료");
     }
   }
 
@@ -49,7 +50,6 @@ class Main extends React.Component {
     const disagreeBarStyle = {
       width: `${Math.round((this.props.disagree / (this.props.agree + this.props.disagree)) * 100)}%`,
     }
-    console.log("Main.isLogin : ", this.state.isLogin);
     return (
       <>
         <h1 className="title">{this.props.title}</h1>
