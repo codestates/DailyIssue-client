@@ -31,7 +31,11 @@ function contents(props) {
                     />
                     {
                       props.voted ? 
-                      <Comments comments={props.comments} handleAddComment={props.handleAddComment} handleSubmitLike={props.handleSubmitLike} postId={props.postId}/>
+                      <Comments 
+                        comments={props.comments} 
+                        handleAddComment={props.handleAddComment} 
+                        handleSubmitLike={props.handleSubmitLike} 
+                        postId={props.postId}/>
                       :
                       null
                     }
@@ -47,7 +51,12 @@ function contents(props) {
         <Route
           exact
           path='/mypage'
-          render={() => <Mypage userinfo={props.userinfo} userdata={props.userdata} like={props.like} />}
+          render={() => <Mypage 
+                          userinfo={props.userinfo} 
+                          userdata={props.userdata} 
+                          likeGet={props.likeGet} 
+                          likeGive={props.likeGive} 
+                          handleGetUserData={props.handleGetUserData}/>}
         />
       </Switch>
     </div>

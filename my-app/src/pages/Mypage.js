@@ -8,8 +8,7 @@ class Mypage extends React.Component {
     super(props);
     this.state = {
       signUpModalOn: false,
-      errorMessage: ""
-
+      errorMessage: "",
     }
     this.handleSignUpModalOn = this.handleSignUpModalOn.bind(this);
   }
@@ -18,7 +17,9 @@ class Mypage extends React.Component {
   //   credentials:'include'
   // }
 
-
+  componentDidMount(){
+    this.props.handleGetUserData();
+  }
 
 
   handleSignUpModalOn = (e) => {
@@ -64,7 +65,7 @@ class Mypage extends React.Component {
         </div>
         <div id="like-wrap">
           <h1>Number of Likes</h1>
-          <div>👍 {this.props.like} </div>
+          <div>👍 {this.props.likeGet}/{this.props.likeGive} </div>
         </div>
         <div id="rank-wrap">
           <h1>Rank</h1>
