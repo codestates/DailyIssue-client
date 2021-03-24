@@ -57,6 +57,7 @@ class App extends React.Component {
           userdata: data.data.userData,
           like: data.data.like,
         })
+        this.props.history.push('/mypage')
       })
   }
 
@@ -125,7 +126,7 @@ class App extends React.Component {
 
   handleResponseSuccess(token) {
     this.setState({ isLogin: false, userinfo: token });
-    this.handleGetUserData();
+    // this.handleGetUserData();
     axios.get("http://15.165.161.223:4000/main", {
       headers: {
         Authorization: `bear ${this.state.userinfo}`,
@@ -164,6 +165,7 @@ class App extends React.Component {
                   <Nav userinfo={this.state.userinfo}
                     handleLogout={this.handleLogout}
                     toggleWriting={() => this.setState({ isWriting: !this.state.isWriting })}
+                    handleGetUserData={this.handleGetUserData}
                   />
                   <div className="Components">
                     <SideNav hotIssues={this.state.hotIssues}
