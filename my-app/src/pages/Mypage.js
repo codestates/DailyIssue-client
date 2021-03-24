@@ -17,7 +17,7 @@ class Mypage extends React.Component {
   //   credentials:'include'
   // }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.handleGetUserData();
   }
 
@@ -26,7 +26,7 @@ class Mypage extends React.Component {
     this.setState({
       signUpModalOn: !this.state.signUpModalOn,
     });
-    console.log('1')
+
   };
 
 
@@ -41,14 +41,14 @@ class Mypage extends React.Component {
                 <label htmlFor="">Nickname</label>
               </li>
               <li id="mypage-nickname-input">
-                <input type="text" placeholder={(this.props.userdata)?this.props.userdata.nickname:"loading"} />
+                <input type="text" placeholder={(this.props.userdata) ? this.props.userdata.nickname : "loading"} />
                 {/* {this.props.userdata.nickname} */}
               </li>
               <li id="mypage-email">
                 <label htmlFor="">Email</label>
               </li>
               <li id="mypage-email-input">
-                <input type="text" value={(this.props.userdata)?this.props.userdata.email:'loading'} readOnly />
+                <input type="text" value={(this.props.userdata) ? this.props.userdata.email : 'loading'} readOnly />
                 {/* {this.props.userdata.email} */}
               </li>
               {this.state.errorMessage ?
@@ -61,7 +61,7 @@ class Mypage extends React.Component {
               </div>
             </ul>
           </div>
-          <Modify isOpen={this.state.signUpModalOn} handleSignUpModalOn={this.handleSignUpModalOn} />
+          <Modify isOpen={this.state.signUpModalOn} handleSignUpModalOn={this.handleSignUpModalOn} userinfo={this.props.userinfo} handleLogout={this.props.handleLogout} />
         </div>
         <div id="like-wrap">
           <h1>Number of Likes</h1>
