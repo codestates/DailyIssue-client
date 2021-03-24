@@ -5,6 +5,8 @@ import defaultProfile from '../img/default-profile.png';
 class Comment extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+        }
     }
     render() {
         return (
@@ -17,9 +19,11 @@ class Comment extends React.Component {
                     </div>
                     <div className="root-comment">{this.props.comment}</div>
                     <button className="btn-like" onClick={this.props.handleSubmitLike}><img className="btn-up-img" src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"/></button>
+                    <div className="point">{this.props.like}</div>
                 </li>
             :
                 <li className="root-commentBox-disagree">
+                    <div className="point-disagree">{this.props.like}</div>
                     <button className="btn-like" onClick={this.props.handleSubmitLike}><img className="btn-up-img" src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png"/></button>
                     <div className="root-comment-disagree">{this.props.comment}</div>
                     <div className="root-commentPic">

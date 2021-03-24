@@ -120,13 +120,19 @@ function SideNav(props) {
       <div className="RandomIssue" onClick={handleRandomIssue}>
         Go to Random issue
     </div>
-      <div className="Hot_Issue">
-        Hot Issues
-        <ul>
-          {hotIssues.map((hotIssue, index) => <li className="li" key={index} onClick={() => handleHotIssueClick(hotIssue.postId)}>{hotIssue.title}</li>)}
-        </ul>
-      </div>
+    <div>
       <br></br>
+    </div>
+    <div className="Hot_Issue">
+        <div className="HOT">HOT ISSUE</div>
+        <ul className="Hot_issue_ul">
+          {hotIssues.map((hotIssue,index)=><li className="li" key={index} onClick={()=>handleHotIssueClick(hotIssue.postId)}><div>{hotIssue.title}</div></li>)}
+        </ul>
+        <div className="RandomIssue" onClick={handleRandomIssue}>
+          <div>Random Issue</div>
+        </div>
+    </div>
+    <br></br>
     </div>
 
   );
