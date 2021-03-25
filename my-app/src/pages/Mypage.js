@@ -36,7 +36,7 @@ class Mypage extends React.Component {
 
   handleSave() {
     if (this.state.nickname !== "") {
-      axios.post("http://15.165.161.223:4000/mypage/changeNickname", {
+      axios.post("https://app.dailyissue.net/mypage/changeNickname", {
         nicknameFix: this.state.nickname,
       },
         {

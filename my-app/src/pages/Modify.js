@@ -45,7 +45,7 @@ class Modify extends Component {
         }
         console.log("userinfo : ", this.props.userinfo);
         axios
-            .post("http://15.165.161.223:4000/mypage/changePwRequest",
+            .post("https://app.dailyissue.net/mypage/changePwRequest",
                 {
                     "password": password,
                     "fixPassword": newpassword,

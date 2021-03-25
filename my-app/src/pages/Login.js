@@ -7,7 +7,7 @@ import githubImg from '../img/github.png';
 import './Login.css';
 
 axios.defaults.withCredentials = true;
-const gooleUrl = "https://accounts.google.com/o/oauth2/auth?client_id=745811647110-ma8nt8d0dqpuib8sraari6tmo9o9a7aq.apps.googleusercontent.com&redirect_uri=http%3A%2F%2F15.165.161.223%3A4000%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email";
+const gooleUrl = "https://accounts.google.com/o/oauth2/auth?client_id=745811647110-ma8nt8d0dqpuib8sraari6tmo9o9a7aq.apps.googleusercontent.com&redirect_uri=http%3A%2F%2Fapp.dailyissue.net%3A4000%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email";
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
@@ -58,7 +58,7 @@ class LoginPage extends React.Component {
         }
 
         return axios
-            .post("http://15.165.161.223:4000/login", {
+            .post("https://app.dailyissue.net/login", {
                 username: userId,
                 password: password,
                 credentials: 'include',
@@ -145,10 +145,10 @@ export default LoginPage;
 //                 errorMessage: ""
 //             });
 //         }
-//         // 15.165.161.223
-//         // axios.get(“http://15.165.161.223:4000/main/like”);
+//         // app.dailyissue.net
+//         // axios.get(“https://app.dailyissue.net/main/like”);
 //         return axios
-//             .post("https://localhost:4000/signin", {
+//             .post("https://localhost/signin", {
 //                 userId: userId,
 //                 password: password,
 //             })

@@ -50,7 +50,7 @@ class App extends React.Component {
     this.setState({
       isLogin: !this.state.isLogin,
     })
-    axios.get("http://15.165.161.223:4000/main", {
+    axios.get("https://app.dailyissue.net/main", {
       // headers: {
       //   Authorization: `bear ${this.state.userinfo}`,
       //   credentials: 'include'
@@ -61,7 +61,7 @@ class App extends React.Component {
         this.props.history.push("/")
       })
       .catch(e => console.log(e));
-    axios.get(`http://15.165.161.223:4000/main/hotissue/`)
+    axios.get(`https://app.dailyissue.net/main/hotissue/`)
       .then(data => {
         this.handleHotIssue(data.data.hotIssues);
       })
@@ -69,7 +69,7 @@ class App extends React.Component {
   }
 
   handleGetUserData() {
-    axios.get("http://15.165.161.223:4000/mypage", {
+    axios.get("https://app.dailyissue.net/mypage", {
       headers: {
         Authorization: `Bearer ${this.state.userinfo}`,
         credentials: 'include'
@@ -81,7 +81,7 @@ class App extends React.Component {
           likeGive: data.data.like,
         });
       });
-    axios.get("http://15.165.161.223:4000/main/like", {
+    axios.get("https://app.dailyissue.net/main/like", {
       headers: {
         Authorization: `Bearer ${this.state.userinfo}`,
         credentials: 'include'
@@ -98,7 +98,7 @@ class App extends React.Component {
   handleSubmitLike(id, postId) {
     if (!this.state.userinfo) return;
     axios
-      .post('http://15.165.161.223:4000/main/like', {
+      .post('https://app.dailyissue.net/main/like', {
         commentId: id,
         postId: postId
       },
@@ -118,7 +118,7 @@ class App extends React.Component {
   handleAddComment(id, text) {
     if (this.state.date !== today()) return;
     axios
-      .post("http://15.165.161.223:4000/main/comment",
+      .post("https://app.dailyissue.net/main/comment",
         {
           "postId": id,
           "text": text
@@ -162,7 +162,7 @@ class App extends React.Component {
   handleResponseSuccess(token) {
     this.setState({ isLogin: false, userinfo: token });
     // this.handleGetUserData();
-    axios.get("http://15.165.161.223:4000/main", {
+    axios.get("https://app.dailyissue.net/main", {
       headers: {
         Authorization: `bear ${this.state.userinfo}`,
         credentials: 'include'
@@ -173,7 +173,7 @@ class App extends React.Component {
         this.props.history.push("/")
       })
       .catch(e => console.log(e));
-    axios.get(`http://15.165.161.223:4000/main/hotissue/`)
+    axios.get(`https://app.dailyissue.net/main/hotissue/`)
       .then(data => {
         this.handleHotIssue(data.data.hotIssues);
       })

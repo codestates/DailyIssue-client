@@ -50,7 +50,7 @@ class Nav extends React.Component {
   done = () => {
     if (this.state.text) {
       // text를 보내서 issue를 생성해야함
-      axios.post("http://15.165.161.223:4000/main/small", {
+      axios.post("https://app.dailyissue.net/main/small", {
         title: this.state.text,
         postId: this.props.postId,
         credentials: "include"
