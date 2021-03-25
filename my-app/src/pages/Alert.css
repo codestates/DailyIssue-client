@@ -27,3 +27,8 @@
     color: white;
     cursor: pointer;
 }
+
+.MyModal #alert-comment {
+    font-size: 20px;
+    color: white;
+}

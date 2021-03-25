@@ -1,7 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 import React from "react";
-import './Mypage.css';
-import Modify from './Modify';
+import Alert from "./Alert";
+import "./Mypage.css";
+import Modify from "./Modify";
 
 class Mypage extends React.Component {
   constructor(props) {
@@ -10,10 +11,13 @@ class Mypage extends React.Component {
       nickname: "",
       signUpModalOn: false,
       errorMessage: "",
+      changeNickName: false,
+      isOpen: false,
     }
     this.handleSignUpModalOn = this.handleSignUpModalOn.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.handleInputValue = this.handleInputValue.bind(this);
+    this.handleCloseBtn = this.handleCloseBtn.bind(this);
   }
 
   componentDidMount() {
@@ -24,23 +28,40 @@ class Mypage extends React.Component {
     this.setState({ nickname: e.target.value });
   };
 
+  handleCloseBtn() {
+    this.setState({
+      isOpen: !this.state.isOpen,
+    })
+  }
+
   handleSave() {
-    axios.post("http://15.165.161.223:4000/mypage/changeNickname", {
-      nicknameFix: this.state.nickname,
-    },
-      {
-        headers: {
-          Authorization: `Bearer ${this.props.userinfo}`,
-          credentials: 'include'
-        }
+    if (this.state.nickname !== "") {
+      axios.post("http://15.165.161.223:4000/mypage/changeNickname", {
+        nicknameFix: this.state.nickname,
+      },
+        {
+          headers: {
+            Authorization: `Bearer ${this.props.userinfo}`,
+            credentials: 'include'
+          }
+        })
+        .then(data => {
+          console.log("save data : ", data);
+          this.setState({
+            isOpen: true,
+          })
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    } else {
+      //모달로..
+      // alert('변경할 닉네임을 정해주세요');
+      this.setState({
+        isOpen: true,
       })
-      .then(data => {
-        console.log("save data : ", data);
-        //모달로 메세지 띄우기..?
-      })
-      .catch(err => {
-        console.log(err);
-      })
+    }
+
   }
 
 
@@ -84,6 +105,7 @@ class Mypage extends React.Component {
             </ul>
           </div>
           <Modify isOpen={this.state.signUpModalOn} handleSignUpModalOn={this.handleSignUpModalOn} userinfo={this.props.userinfo} handleLogout={this.props.handleLogout} />
+          <Alert isOpen={this.state.isOpen} handleCloseBtn={this.handleCloseBtn} nickname={this.state.nickname} />
         </div>
         <div id="like-wrap">
           <h1>Number of Likes</h1>
