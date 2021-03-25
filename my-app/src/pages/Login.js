@@ -7,7 +7,7 @@ import githubImg from '../img/github.png';
 import './Login.css';
 
 axios.defaults.withCredentials = true;
-const gooleUrl = "https://accounts.google.com/o/oauth2/auth?client_id=745811647110-ma8nt8d0dqpuib8sraari6tmo9o9a7aq.apps.googleusercontent.com&redirect_uri=http%3A%2F%2F15.165.161.223%3A4000%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email";
+const gooleUrl = "https://accounts.google.com/o/oauth2/auth?client_id=745811647110-ma8nt8d0dqpuib8sraari6tmo9o9a7aq.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fapp.dailyissue.net%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email";
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
