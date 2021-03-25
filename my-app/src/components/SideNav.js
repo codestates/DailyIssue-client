@@ -13,7 +13,7 @@ function SideNav(props) {
   const handleCalenderClick = function (date) {
     if (date > today.format('YYYY-MM-DD')) return;
     props.handleDate(date);
-    axios.get(`http://15.165.161.223:4000/main/${date}`, props.userinfo ? {
+    axios.get(`https://app.dailyissue.net/main/${date}`, props.userinfo ? {
       headers: {
         authorization: `bear ${props.userinfo}`
       }
@@ -23,14 +23,14 @@ function SideNav(props) {
         props.history.push('/');
       })
       .catch(e => console.log("not found dailyIssue"));
-    axios.get(`http://15.165.161.223:4000/main/hotissue/${date}`)
+    axios.get(`https://app.dailyissue.net/main/hotissue/${date}`)
       .then(data => {
         props.handleHotIssue(data.data.hotIssues);
       })
       .catch(e => console.log("not found hotIssues"));
   };
   const handleRandomIssue = function () {
-    axios.get(`http://15.165.161.223:4000/main/small?date=${props.date}`, (props.userinfo) ? {
+    axios.get(`https://app.dailyissue.net/main/small?date=${props.date}`, (props.userinfo) ? {
       headers: {
         Authorization: `bear ${props.userinfo}`
       }
@@ -43,7 +43,7 @@ function SideNav(props) {
 
   const handleHotIssueClick = function (issueId) {
     if (issueId !== undefined) {
-      axios.get(`http://15.165.161.223:4000/main/small/${issueId}`, (props.userinfo) ? {
+      axios.get(`https://app.dailyissue.net/main/small/${issueId}`, (props.userinfo) ? {
         headers: {
           Authorization: `bear ${props.userinfo}`
         }

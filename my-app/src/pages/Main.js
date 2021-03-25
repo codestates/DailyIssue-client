@@ -17,7 +17,7 @@ class Main extends React.Component {
   vote(vote) {
     if(this.props.date!==moment().format("YYYY-MM-DD")) return;
     if (this.props.userinfo) {
-      axios.post("http://15.165.161.223:4000/main/vote", {
+      axios.post("https://app.dailyissue.net/main/vote", {
         vote: vote,
         postId: this.props.postId,
         credentials: "include"

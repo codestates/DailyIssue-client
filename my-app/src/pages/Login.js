@@ -58,7 +58,7 @@ class LoginPage extends React.Component {
         }
 
         return axios
-            .post("http://15.165.161.223:4000/login", {
+            .post("https://app.dailyissue.net/login", {
                 username: userId,
                 password: password,
                 credentials: 'include',
@@ -145,10 +145,10 @@ export default LoginPage;
 //                 errorMessage: ""
 //             });
 //         }
-//         // 15.165.161.223
-//         // axios.get(“http://15.165.161.223:4000/main/like”);
+//         // app.dailyissue.net
+//         // axios.get(“https://app.dailyissue.net/main/like”);
 //         return axios
-//             .post("https://localhost:4000/signin", {
+//             .post("https://localhost/signin", {
 //                 userId: userId,
 //                 password: password,
 //             })

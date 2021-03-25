@@ -59,7 +59,7 @@ class SignUp extends Component {
 
 
         axios
-            .post("http://15.165.161.223:4000/signup", {
+            .post("https://app.dailyissue.net/signup", {
                 "username": userid,
                 "nickname": nickname,
                 "password": password,
