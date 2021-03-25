@@ -4,7 +4,6 @@ import Main from "../pages/Main"
 import Mypage from '../pages/Mypage'
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import Comments from './Comments'
-import AddSmallIssue from './AddSmallIssue'
 import moment from 'moment'
 
 function contents(props) {
@@ -41,12 +40,7 @@ function contents(props) {
                       null
                   }
                 </>
-                : <AddSmallIssue
-                  postId={props.postId}
-                  userinfo={props.userinfo}
-                  handleIssue={props.handleIssue}
-                  toggleWriting={props.toggleWriting}
-                ></AddSmallIssue>
+                : null
             )
           }} />
         <Route
