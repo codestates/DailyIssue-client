@@ -96,7 +96,6 @@ class LoginPage extends React.Component {
                             <button id="guest-btn" onClick={this.props.handleGuestLogin}>Start as a Guest<br />(view only)</button>
                             <button id="signup-btn" onClick={this.handleSignUpModalOn}>SignUp</button>
                             <div id="login-with">
-                                <button id="github-login"><img src={githubImg} alt="github-login-icon" id="github-login-icon" /></button>
                                 <a href={gooleUrl}><button id="google-login"><img src={googleImg} alt="google-login-icon" id="google-login-icon" /></button></a>
                             </div>
                         </div>

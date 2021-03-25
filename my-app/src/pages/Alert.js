@@ -32,7 +32,9 @@ class Alert extends Component {
             <Modal className="MyModal" isOpen={this.props.isOpen} ariaHideApp={false}>
                 <div className="content">
                     <button id="closeBtn" onClick={() => this.props.handleCloseBtn()}>Close</button>
-                    <div id="alert-comment">Login is required</div>
+                    {this.props.contents ? <div id="alert-comment">{this.props.contents}</div>
+                        : <div id="alert-comment">Login is required</div>}
+
                 </div>
             </Modal>
 
