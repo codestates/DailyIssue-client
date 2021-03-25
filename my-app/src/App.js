@@ -211,9 +211,10 @@ class App extends React.Component {
                 <div className="App">
                   <Nav userinfo={this.state.userinfo}
                     handleLogout={this.handleLogout}
-                    toggleWriting={() => this.setState({ isWriting: !this.state.isWriting })}
                     likeGet={this.state.likeGet}
                     likeGive={this.state.likeGive}
+                    postId={this.state.postId}
+                    handleIssue={this.handleIssue}
                   />
                   <div className="Components">
                     <SideNav hotIssues={this.state.hotIssues}
@@ -221,8 +222,7 @@ class App extends React.Component {
                       handleDate={this.handleDate}
                       handleHotIssue={this.handleHotIssue}
                       handleIssue={this.handleIssue}
-                      userinfo={this.state.userinfo}
-                      toggleWriting={() => this.setState({ isWriting: !this.state.isWriting })} />
+                      userinfo={this.state.userinfo} />
                     <Contents handleIssue={this.handleIssue}
                       date={this.state.date}
                       postId={this.state.postId}
@@ -236,7 +236,6 @@ class App extends React.Component {
                       handleAddComment={this.handleAddComment}
                       handleSubmitLike={this.handleSubmitLike}
                       isWriting={this.state.isWriting}
-                      toggleWriting={() => this.setState({ isWriting: !this.state.isWriting })}
                       userdata={this.state.userdata}
                       likeGive={this.state.likeGive}
                       likeGet={this.state.likeGet}
