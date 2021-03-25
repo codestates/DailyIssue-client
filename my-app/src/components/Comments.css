@@ -1,0 +1,22 @@
+.root-comments {
+  width: 100%;
+  height: 50%;
+  padding: 1%;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+#btn-addComment {
+  width: 100%;
+  height: 50px;
+  background-color: #16c79a;
+  border: none;
+  color: white;
+}
