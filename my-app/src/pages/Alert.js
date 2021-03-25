@@ -17,77 +17,22 @@ class Alert extends Component {
             changePwCheck: false,
             clickMoPassword: false,
         }
-        this.handleModify = this.handleModify.bind(this);
-    }
-
-
-
-    handleInputValue = (key) => (e) => {
-        this.setState({ [key]: e.target.value });
-    };
-
-    handleModify = () => {
-        const { password, newpassword, confirmpassword } = this.state;
-        const regex = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-        this.setState({
-            errorMessage: "",
-        })
-
-        if (newpassword !== confirmpassword) {
-            this.setState({
-                errorMessage: "Passwords don't match"
-            });
-            return;
-        } else {
-            this.setState({
-                errorMessage: ""
-            });
-        }
-        console.log("userinfo : ", this.props.userinfo);
-        axios
-            .post("http://15.165.161.223:4000/mypage/changePwRequest",
-                {
-                    "password": password,
-                    "fixPassword": newpassword,
-                },
-                {
-                    headers: {
-                        Authorization: `Bearer ${this.props.userinfo}`,
-                        credentials: 'include'
-                    }
-                })
-            .then(data => {
-                console.log(data)
-                if (data.data.err) {
-                    this.setState({
-                        errorMessage: "Your recent password is incorrect",
-                    })
-                } else {
-                    this.setState({
-                        changePwCheck: !this.state.changePwCheck,
-                    })
-                    // this.props.handleLogout();
-                }
-            })
-            .catch(err => {
-                this.setState({
-                    errorMessage: "Your recent password is incorrect",
-                })
-            })
-    };
-
-    errorMessageReset = () => {
-        this.setState({
-            errorMessage: "",
-        })
     }
 
     render() {
-        return (
+        return (this.props.nickname || this.props.nickname === "" ?
             <Modal className="MyModal" isOpen={this.props.isOpen} ariaHideApp={false}>
                 <div className="content">
                     <button id="closeBtn" onClick={() => this.props.handleCloseBtn()}>Close</button>
-                    <div>Login is required</div>
+                    {this.props.nickname ? <div id="alert-comment">Your nickname has been changed <br></br>🅽{this.props.nickname}</div>
+                        : <div id="alert-comment">Please enter a nickname to change</div>}
+
+                </div>
+            </Modal> :
+            <Modal className="MyModal" isOpen={this.props.isOpen} ariaHideApp={false}>
+                <div className="content">
+                    <button id="closeBtn" onClick={() => this.props.handleCloseBtn()}>Close</button>
+                    <div id="alert-comment">Login is required</div>
                 </div>
             </Modal>
 

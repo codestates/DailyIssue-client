@@ -30,8 +30,8 @@ class Nav extends React.Component {
         <div className="img"><img src="../debate.png" width="40px" height="40px" /></div>
         <div className="Daily_Issue" onClick={this.gotoMain}>Daily Issue</div>
         {this.props.userinfo ? <div className="profile" onClick={this.props.toggleWriting}></div> : null}
-        <div className="profile" onClick={this.toMypage}></div>
-        <div className="like">👍{this.props.likeGet}/{this.props.likeGive}</div>
+        {this.props.userinfo ? <div className="profile" onClick={this.toMypage}></div> : null}
+        {this.props.userinfo ? <div className="like">👍{this.props.likeGet}/{this.props.likeGive}</div> : null}
         <div className="Sign_Out" onClick={this.props.handleLogout}>
           {this.props.userinfo ? 'Sign out' : 'login'}
         </div>

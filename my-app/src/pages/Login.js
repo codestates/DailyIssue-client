@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-// import Modal from 'react-modal';
 import SignUp from './SignUp';
+import Alert from './Alert';
 import googleImg from '../img/Google_icon.png';
 import githubImg from '../img/github.png';
-// import './Modal.css';
 import './Login.css';
 
 axios.defaults.withCredentials = true;
@@ -57,8 +56,7 @@ class LoginPage extends React.Component {
                 errorMessage: ""
             });
         }
-        // 15.165.161.223
-        // axios.get(“http://15.165.161.223:4000/main/like”);
+
         return axios
             .post("http://15.165.161.223:4000/login", {
                 username: userId,
@@ -103,6 +101,7 @@ class LoginPage extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <Alert />
                     <SignUp isOpen={this.state.signUpModalOn} handleSignUpModalOn={this.handleSignUpModalOn} />
                 </div >
             </div>
