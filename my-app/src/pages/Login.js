@@ -7,7 +7,7 @@ import githubImg from '../img/github.png';
 import './Login.css';
 
 axios.defaults.withCredentials = true;
-const gooleUrl = "https://accounts.google.com/o/oauth2/auth?client_id=745811647110-ma8nt8d0dqpuib8sraari6tmo9o9a7aq.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fapp.dailyissue.net%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email";
+const gooleUrl = "https://accounts.google.com/o/oauth2/auth?client_id=745811647110-ma8nt8d0dqpuib8sraari6tmo9o9a7aq.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fwww.dailyissue.net&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email";
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
@@ -73,6 +73,40 @@ class LoginPage extends React.Component {
                 });
             });
     };
+    
+    handleGoogle = () => {
+        const { handleResponseSuccess } = this.props;
+        axios
+        .get(gooleUrl)
+        .then(athCode => {
+            console.log(athCode);
+            axios
+            .post("https://www.googleapis.com/oauth2/v4/token", {
+                code: athCode,
+                client_id: '745811647110-ma8nt8d0dqpuib8sraari6tmo9o9a7aq.apps.googleusercontent.com',
+                client_secret: 'ywzPl-vtxg2Z28Nk6tqOfUgJ',
+                redirect_uri: 'https://www.dailyissue.net',
+                grant_type: "authorization_code",
+            })
+            .then(async (accToken) => {
+                console.log(accToken);
+                // userinfo 받아오기 && accToken 검사
+                const googleUser = await axios
+                .post(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${accToken}`, {
+                    headers: {
+                        Authorization: `Bearer ${accToken}`
+                    }
+                })
+                .then(info => {
+                    console.log(info.data); // data.id
+                    return info.data;
+                })
+                console.log(googleUser);
+                // googleUser 사용
+                handleResponseSuccess(accToken);
+            })
+        })
+    }
 
     render() {
         return (
