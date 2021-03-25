@@ -67,9 +67,10 @@ class LoginPage extends React.Component {
                 handleResponseSuccess(data.data.accToken);
             })
             .catch((err) => {
-                //modal로 구현(alert 사용x)
-                alert("Login failed");
                 console.log(err);
+                this.setState({
+                    errorMessage: "Login failed"
+                });
             });
     };
 
