@@ -7,7 +7,7 @@ import githubImg from '../img/github.png';
 import './Login.css';
 
 axios.defaults.withCredentials = true;
-const gooleUrl = "https://accounts.google.com/o/oauth2/auth?client_id=745811647110-ma8nt8d0dqpuib8sraari6tmo9o9a7aq.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fapp.dailyissue.net%2Fcallback&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email";
+const gooleUrl = "https://accounts.google.com/o/oauth2/auth?client_id=745811647110-ma8nt8d0dqpuib8sraari6tmo9o9a7aq.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fwww.dailyissue.net&response_type=code&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email";
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
@@ -74,6 +74,32 @@ class LoginPage extends React.Component {
             });
     };
 
+    handleGooggle = () => {
+        const { handleResponseSuccess } = this.props;
+        axios.get(gooleUrl)
+        .then(authorizationCode => {
+            console.log(authorizationCode);
+            axios
+            .post("https://www.googleapis.com/oauth2/v4/token", {
+                code: authorizationCode,
+                client_id: '745811647110-ma8nt8d0dqpuib8sraari6tmo9o9a7aq.apps.googleusercontent.com',
+                client_secret: 'ywzPl-vtxg2Z28Nk6tqOfUgJ',
+                redirect_uri: 'https://www.dailyissue.net',
+                grant_type: "authorization_code",
+            })
+            .then(async (accessToken) => {
+                console.log(accessToken);
+                const googleUser = await axios
+                .get(`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${accessToken}`, {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`
+                    }
+                })
+                handleResponseSuccess(accessToken);
+            })
+        })
+    }
+
     render() {
         return (
             <div className="Login">
@@ -97,7 +123,7 @@ class LoginPage extends React.Component {
                             <button id="guest-btn" onClick={this.props.handleGuestLogin}>Start as a Guest<br />(view only)</button>
                             <button id="signup-btn" onClick={this.handleSignUpModalOn}>SignUp</button>
                             <div id="login-with">
-                                <a href={gooleUrl}><button id="google-login"><img src={googleImg} alt="google-login-icon" id="google-login-icon" /></button></a>
+                                <button onClick={this.handleGooggle}><div id="google-login"><img src={googleImg} alt="google-login-icon" id="google-login-icon" /></div></button>
                             </div>
                         </div>
                     </div>
