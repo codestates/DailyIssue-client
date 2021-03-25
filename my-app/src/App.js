@@ -33,7 +33,7 @@ class App extends React.Component {
       hotIssues: [],
       likeGet: 0,
       likeGive: 0,
-      userdata: null
+      userdata: null,
     }
     this.handleIssue = this.handleIssue.bind(this);
     this.handleHotIssue = this.handleHotIssue.bind(this);
@@ -96,7 +96,7 @@ class App extends React.Component {
 
 
   handleSubmitLike(id, postId) {
-    if(!this.state.userinfo) return;
+    if (!this.state.userinfo) return;
     axios
       .post('http://15.165.161.223:4000/main/like', {
         commentId: id,
@@ -109,9 +109,9 @@ class App extends React.Component {
           }
         })
       // 새로운 댓글 리스트를 반환할 예정
-      .then(data=>{
+      .then(data => {
         console.log(data.data);
-        this.setState({comments: data.data.comments});
+        this.setState({ comments: data.data.comments });
       });
   }
 
@@ -222,7 +222,9 @@ class App extends React.Component {
                       handleDate={this.handleDate}
                       handleHotIssue={this.handleHotIssue}
                       handleIssue={this.handleIssue}
-                      userinfo={this.state.userinfo} />
+                      userinfo={this.state.userinfo}
+                      history={this.props.history}
+                    />
                     <Contents handleIssue={this.handleIssue}
                       date={this.state.date}
                       postId={this.state.postId}
