@@ -32,7 +32,7 @@
 
 
 ### 서버
-![arch](https://user-images.githubusercontent.com/55545331/112569303-49ebf000-8e27-11eb-95b0-ad4e5c078697.png)
+![arch](https://user-images.githubusercontent.com/55545331/112569392-6e47cc80-8e27-11eb-8c25-02e7e24560f7.png)
 
 
 ## 팀원
