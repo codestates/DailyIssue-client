@@ -28,9 +28,11 @@
 ## 구조
 
 ### 클라이언트
+![arch](https://user-images.githubusercontent.com/55545331/112569282-435d7880-8e27-11eb-95f8-8fc97701b10b.png)
 
 
 ### 서버
+![arch](https://user-images.githubusercontent.com/55545331/112569303-49ebf000-8e27-11eb-95b0-ad4e5c078697.png)
 
 
 ## 팀원
